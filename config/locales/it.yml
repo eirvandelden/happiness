@@ -1,0 +1,164 @@
+  it:
+    locales:
+      en: "English"
+      nl: "Nederlands"
+      it: "Italiano"
+
+    color_schemes:
+      system: "Sistema"
+      light: "Chiaro"
+      dark: "Scuro"
+
+    themes:
+      white: "Bianco"
+      selenized_light: "Selenized Chiaro"
+      black: "Nero"
+      selenized_dark: "Selenized Scuro"
+
+    nav:
+      home: "🏠 Home"
+      preferences: "⚙️ Preferenze"
+      admin: "👑 Admin"
+
+    sessions:
+      sign_in: "🔑 Accedi"
+      sign_out: "👋 Esci"
+      new:
+        title: "🔐 Accedi"
+        email: "📧 Email"
+        password: "🔒 Password"
+        submit: "Accedi"
+      create:
+        success: "✅ Accesso effettuato"
+        failure: "❌ Email o password non validi"
+      destroy:
+        success: "👋 Disconnessione effettuata"
+
+    home:
+      index:
+        welcome: "👋 Benvenuto"
+        signed_in_as: "Hai effettuato l'accesso come %{email} (%{role})"
+        admin_panel: "👑 Pannello Admin"
+
+    preferences:
+      edit:
+        title: "⚙️ Preferenze"
+        language: "🌍 Lingua"
+        locale: "Lingua"
+<<<<<<< Updated upstream
+        timezone: "Fuso orario"
+        appearance: "Aspetto"
+=======
+        appearance: "🎨 Aspetto"
+>>>>>>> Stashed changes
+        color_scheme: "Schema colori"
+        color_scheme_hint: "Sistema segue le impostazioni del dispositivo"
+        light_theme: "☀️ Tema chiaro"
+        dark_theme: "🌙 Tema scuro"
+        submit: "💾 Salva preferenze"
+      update:
+        success: "✅ Preferenze aggiornate"
+
+    admin:
+      title: "👑 Admin"
+      nav:
+<<<<<<< Updated upstream
+        dashboard: "Dashboard"
+        users: "Utenti"
+        faultline: "Faultline"
+        back_to_site: "Torna al sito"
+      dashboard:
+        index:
+          title: "Dashboard"
+          summary: "Riepilogo"
+          total_users: "Utenti totali"
+          admin_users: "Utenti admin"
+          recent_logins: "Accessi recenti"
+          name: "Nome"
+          email: "Email"
+          role: "Ruolo"
+          last_login_at: "Ultimo accesso"
+          actions: "Azioni"
+          no_name: "-"
+          never: "Mai"
+          view: "Visualizza"
+          edit: "Modifica"
+      users:
+        index:
+          title: "Gestione utenti"
+          new_user: "Nuovo utente"
+          name: "Nome"
+=======
+        dashboard: "📊 Dashboard"
+        users: "👥 Utenti"
+        back_to_site: "← Torna al sito"
+      users:
+        index:
+          title: "👥 Gestione utenti"
+>>>>>>> Stashed changes
+          email: "Email"
+          role: "Ruolo"
+          last_login_at: "Ultimo accesso"
+          created_at: "Creato"
+          actions: "Azioni"
+<<<<<<< Updated upstream
+          no_name: "-"
+          never: "Mai"
+          view: "Visualizza"
+          edit: "Modifica"
+          delete: "Elimina"
+          confirm_delete: "Sei sicuro di voler eliminare questo utente?"
+        show:
+          title: "Dettagli utente"
+          name: "Nome"
+          no_name: "-"
+          email: "Email"
+          role: "Ruolo"
+          last_login_at: "Ultimo accesso"
+          never: "Mai"
+          created_at: "Creato"
+          active_sessions: "Sessioni attive"
+          edit: "Modifica"
+          back: "Indietro"
+        new:
+          title: "Nuovo utente"
+          submit: "Crea utente"
+        form:
+          name: "Nome"
+          email: "Email"
+          role: "Ruolo"
+          password: "Password"
+          password_confirmation: "Conferma password"
+=======
+          view: "👁️ Visualizza"
+          edit: "✏️ Modifica"
+          delete: "🗑️ Elimina"
+          confirm_delete: "⚠️ Sei sicuro di voler eliminare questo utente?"
+        show:
+          title: "👤 Dettagli utente"
+          email: "📧 Email"
+          role: "🎭 Ruolo"
+          created_at: "📅 Creato"
+          active_sessions: "🔗 Sessioni attive"
+          edit: "✏️ Modifica"
+          back: "← Indietro"
+        edit:
+          title: "✏️ Modifica utente"
+          email: "📧 Email"
+          role: "🎭 Ruolo"
+          submit: "💾 Aggiorna utente"
+>>>>>>> Stashed changes
+          cancel: "Annulla"
+        create:
+          success: "Utente creato con successo"
+        edit:
+          title: "Modifica utente"
+          submit: "Aggiorna utente"
+        update:
+          success: "✅ Utente aggiornato"
+        destroy:
+          success: "✅ Utente eliminato"
+          cannot_delete_self: "⚠️ Non puoi eliminare te stesso"
+
+    footer:
+      copyright: "© %{year} %{app_name}"

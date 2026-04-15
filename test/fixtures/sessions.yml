@@ -1,0 +1,11 @@
+user_session:
+  user: user
+  token: user_token_123
+  ip_address: 127.0.0.1
+  user_agent: Test Browser
+
+admin_session:
+  user: admin
+  token: admin_token_456
+  ip_address: 127.0.0.1
+  user_agent: Test Browser

@@ -1,0 +1,13 @@
+<h1><%= t(".welcome") %></h1>
+
+<% if authenticated? %>
+  <p><%= t(".signed_in_as", email: Current.user.email, role: Current.user.role) %></p>
+
+  <% if Current.user.admin? %>
+    <p><%= link_to t(".admin_panel"), admin_root_path %></p>
+  <% end %>
+
+  <%= button_to t("sessions.sign_out"), session_path, method: :delete %>
+<% else %>
+  <p><%= link_to t("sessions.sign_in"), new_session_path %></p>
+<% end %>

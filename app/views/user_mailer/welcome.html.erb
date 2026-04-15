@@ -1,0 +1,11 @@
+<h1>Welcome, <%= @user.email %>!</h1>
+
+<p>Thank you for signing up. We're excited to have you on board.</p>
+
+<p>
+  Your account has been created with the role: <strong><%= @user.role.titleize %></strong>
+</p>
+
+<p>
+  <%= link_to "Get Started", root_url %>
+</p>

@@ -1,0 +1,18 @@
+/*
+ * MVPA.css framework
+ * https://github.com/eirvandelden/MVPA.css
+ *
+ * This imports all MVPA.css components in the correct order:
+ * 0_settings → 1_base → 2_layout → 3_components → 4_themes
+ */
+@import url("mvpa/mvpa.css");
+
+/*
+ * Add your local CSS customizations below
+ * Use CSS custom properties to override MVPA.css defaults:
+ *
+ * :root {
+ *   --inline-space: 1.5ch;
+ *   --block-space: 1.5rem;
+ * }
+ */

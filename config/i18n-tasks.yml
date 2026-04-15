@@ -1,0 +1,46 @@
+base_locale: en
+
+locales: [en, nl, it]
+
+data:
+  read:
+    - config/locales/%{locale}.yml
+
+  write:
+    - ['{.:}', 'config/locales/%{locale}.yml']
+
+search:
+  paths:
+    - app/
+
+  relative_roots:
+    - app/controllers
+    - app/helpers
+    - app/mailers
+    - app/presenters
+    - app/views
+
+  exclude:
+    - app/assets/images
+    - app/assets/fonts
+    - app/assets/videos
+    - app/assets/builds
+
+  # Extract t() and I18n.t() calls
+  pattern: "\\bt[( ]\\s*['\"]:?([\\w.]+)"
+
+ignore_missing:
+  - 'errors.messages.*'
+  - 'activerecord.*'
+  - 'date.*'
+  - 'time.*'
+  - 'number.*'
+  - 'helpers.*'
+
+ignore_unused:
+  - 'activerecord.*'
+  - 'errors.*'
+  - 'date.*'
+  - 'time.*'
+  - 'number.*'
+  - 'helpers.*'

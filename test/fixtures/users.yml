@@ -1,0 +1,13 @@
+user:
+  name: Regular User
+  email: user@example.com
+  password_digest: <%= BCrypt::Password.create("password") %>
+  role: user
+  last_login_at: <%= 2.hours.ago %>
+
+admin:
+  name: Admin User
+  email: admin@example.com
+  password_digest: <%= BCrypt::Password.create("password") %>
+  role: admin
+  last_login_at: <%= 1.hour.ago %>

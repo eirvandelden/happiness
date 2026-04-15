@@ -1,0 +1,9 @@
+# Private seeds file for sensitive or local-only data
+# Copy this file to db/seeds_private.rb and customize
+# This file is gitignored and won't be committed
+
+# Example:
+# user = User.find_or_create_by!(email: "local@example.com") do |u|
+#   u.password = "secure_password"
+#   u.role = :admin
+# end

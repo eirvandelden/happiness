@@ -1,0 +1,3 @@
+web: bundle exec thrust bin/rails server
+queue: bundle exec rake solid_queue:start
+cable: bundle exec rake solid_cable:start
