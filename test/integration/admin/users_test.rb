@@ -66,6 +66,15 @@ class Admin::UsersTest < ActionDispatch::IntegrationTest
     assert_equal "admin", @user.role
   end
 
+  test "admin cannot assign an invalid role" do
+    sign_in_as(@admin)
+
+    patch admin_user_path(@user), params: { user: { role: "owner" } }
+
+    assert_response :unprocessable_entity
+    assert_equal "user", @user.reload.role
+  end
+
   test "admin cannot delete themselves" do
     sign_in_as(@admin)
 

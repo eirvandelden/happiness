@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
 
   # Available locales
-  AVAILABLE_LOCALES = %w[nl en it].freeze
+  AVAILABLE_LOCALES = %w[en nl it].freeze
 
   # Enums
   enum :role, { user: 0, admin: 1 }, default: :user
@@ -22,8 +22,8 @@ class User < ApplicationRecord
   validates :dark_theme, presence: true
 
   # Normalizations
-  normalizes :name, with: -> name { name&.strip }
-  normalizes :email, with: -> email { email.strip.downcase }
+  normalizes :name, with: ->(name) { name&.strip }
+  normalizes :email, with: ->(email) { email.strip.downcase }
 
   # Callbacks
   after_create_commit -> { SendWelcomeEmailJob.perform_later(self) }
@@ -39,7 +39,7 @@ class User < ApplicationRecord
   private
 
   def set_defaults
-    self.locale ||= "en"
+    self.locale ||= "nl"
     self.timezone ||= "UTC"
   end
 end

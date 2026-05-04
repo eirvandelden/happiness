@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateFaultlineRequestProfiles < ActiveRecord::Migration[8.1]
   def change
     create_table :faultline_request_profiles do |t|

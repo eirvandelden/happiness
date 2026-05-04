@@ -21,12 +21,18 @@ class SessionsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
 
-    assert_equal new_session_path, path
+    assert_equal root_path, path
   end
 
-  test "invalid email does not sign in user" do
-    sign_in_as(users(:user))
-    # User should redirect to signin page on failure
-    # (implementation depends on your auth setup)
+  test "invalid credentials do not sign in user" do
+    post session_path, params: {
+      email: @user.email,
+      password: "wrong-password"
+    }
+
+    assert_response :unprocessable_entity
+    assert_match I18n.t("sessions.create.failure"), response.body
+    get root_path
+    assert_redirected_to new_session_path
   end
 end

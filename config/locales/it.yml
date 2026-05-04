@@ -1,164 +1,131 @@
-  it:
-    locales:
-      en: "English"
-      nl: "Nederlands"
-      it: "Italiano"
-
-    color_schemes:
-      system: "Sistema"
-      light: "Chiaro"
-      dark: "Scuro"
-
-    themes:
-      white: "Bianco"
-      selenized_light: "Selenized Chiaro"
-      black: "Nero"
-      selenized_dark: "Selenized Scuro"
-
-    nav:
-      home: "🏠 Home"
-      preferences: "⚙️ Preferenze"
-      admin: "👑 Admin"
-
-    sessions:
-      sign_in: "🔑 Accedi"
-      sign_out: "👋 Esci"
-      new:
-        title: "🔐 Accedi"
-        email: "📧 Email"
-        password: "🔒 Password"
-        submit: "Accedi"
-      create:
-        success: "✅ Accesso effettuato"
-        failure: "❌ Email o password non validi"
-      destroy:
-        success: "👋 Disconnessione effettuata"
-
-    home:
+---
+it:
+  admin:
+    authorization:
+      require_admin: "⚠️ Devi essere un amministratore per accedere a questa pagina"
+    dashboard:
       index:
-        welcome: "👋 Benvenuto"
-        signed_in_as: "Hai effettuato l'accesso come %{email} (%{role})"
-        admin_panel: "👑 Pannello Admin"
-
-    preferences:
+        actions: Azioni
+        admin_users: Utenti admin
+        edit: "✏️ Modifica"
+        email: Email
+        last_login_at: Ultimo accesso
+        name: Nome
+        never: Mai
+        no_name: "-"
+        recent_logins: Accessi recenti
+        role: Ruolo
+        summary: Riepilogo
+        title: "📊 Dashboard"
+        total_users: Utenti totali
+        view: "👁️ Visualizza"
+    nav:
+      back_to_site: "← Torna al sito"
+      dashboard: "📊 Dashboard"
+      faultline: "🚨 Faultline"
+      users: "👥 Utenti"
+    title: "👑 Admin"
+    users:
+      create:
+        success: Utente creato con successo
+      destroy:
+        cannot_delete_self: "⚠️ Non puoi eliminare te stesso"
+        success: "✅ Utente eliminato"
       edit:
-        title: "⚙️ Preferenze"
-        language: "🌍 Lingua"
-        locale: "Lingua"
-<<<<<<< Updated upstream
-        timezone: "Fuso orario"
-        appearance: "Aspetto"
-=======
-        appearance: "🎨 Aspetto"
->>>>>>> Stashed changes
-        color_scheme: "Schema colori"
-        color_scheme_hint: "Sistema segue le impostazioni del dispositivo"
-        light_theme: "☀️ Tema chiaro"
-        dark_theme: "🌙 Tema scuro"
-        submit: "💾 Salva preferenze"
+        submit: Aggiorna utente
+        title: Modifica utente
+      form:
+        cancel: Annulla
+        email: Email
+        name: Nome
+        password: Password
+        password_confirmation: Conferma password
+        role: Ruolo
+      index:
+        actions: Azioni
+        confirm_delete: "⚠️ Sei sicuro di voler eliminare questo utente?"
+        created_at: Creato
+        delete: "🗑️ Elimina"
+        edit: "✏️ Modifica"
+        email: Email
+        last_login_at: Ultimo accesso
+        name: Nome
+        never: Mai
+        new_user: Nuovo utente
+        no_name: "-"
+        role: Ruolo
+        title: "👥 Gestione utenti"
+        view: "👁️ Visualizza"
+      new:
+        submit: Crea utente
+        title: Nuovo utente
+      show:
+        active_sessions: "🔗 Sessioni attive"
+        back: "← Indietro"
+        created_at: "📅 Creato"
+        edit: "✏️ Modifica"
+        email: "📧 Email"
+        last_login_at: Ultimo accesso
+        name: Nome
+        never: Mai
+        no_name: "-"
+        role: "🎭 Ruolo"
+        title: "👤 Dettagli utente"
       update:
-        success: "✅ Preferenze aggiornate"
-
-    admin:
-      title: "👑 Admin"
-      nav:
-<<<<<<< Updated upstream
-        dashboard: "Dashboard"
-        users: "Utenti"
-        faultline: "Faultline"
-        back_to_site: "Torna al sito"
-      dashboard:
-        index:
-          title: "Dashboard"
-          summary: "Riepilogo"
-          total_users: "Utenti totali"
-          admin_users: "Utenti admin"
-          recent_logins: "Accessi recenti"
-          name: "Nome"
-          email: "Email"
-          role: "Ruolo"
-          last_login_at: "Ultimo accesso"
-          actions: "Azioni"
-          no_name: "-"
-          never: "Mai"
-          view: "Visualizza"
-          edit: "Modifica"
-      users:
-        index:
-          title: "Gestione utenti"
-          new_user: "Nuovo utente"
-          name: "Nome"
-=======
-        dashboard: "📊 Dashboard"
-        users: "👥 Utenti"
-        back_to_site: "← Torna al sito"
-      users:
-        index:
-          title: "👥 Gestione utenti"
->>>>>>> Stashed changes
-          email: "Email"
-          role: "Ruolo"
-          last_login_at: "Ultimo accesso"
-          created_at: "Creato"
-          actions: "Azioni"
-<<<<<<< Updated upstream
-          no_name: "-"
-          never: "Mai"
-          view: "Visualizza"
-          edit: "Modifica"
-          delete: "Elimina"
-          confirm_delete: "Sei sicuro di voler eliminare questo utente?"
-        show:
-          title: "Dettagli utente"
-          name: "Nome"
-          no_name: "-"
-          email: "Email"
-          role: "Ruolo"
-          last_login_at: "Ultimo accesso"
-          never: "Mai"
-          created_at: "Creato"
-          active_sessions: "Sessioni attive"
-          edit: "Modifica"
-          back: "Indietro"
-        new:
-          title: "Nuovo utente"
-          submit: "Crea utente"
-        form:
-          name: "Nome"
-          email: "Email"
-          role: "Ruolo"
-          password: "Password"
-          password_confirmation: "Conferma password"
-=======
-          view: "👁️ Visualizza"
-          edit: "✏️ Modifica"
-          delete: "🗑️ Elimina"
-          confirm_delete: "⚠️ Sei sicuro di voler eliminare questo utente?"
-        show:
-          title: "👤 Dettagli utente"
-          email: "📧 Email"
-          role: "🎭 Ruolo"
-          created_at: "📅 Creato"
-          active_sessions: "🔗 Sessioni attive"
-          edit: "✏️ Modifica"
-          back: "← Indietro"
-        edit:
-          title: "✏️ Modifica utente"
-          email: "📧 Email"
-          role: "🎭 Ruolo"
-          submit: "💾 Aggiorna utente"
->>>>>>> Stashed changes
-          cancel: "Annulla"
-        create:
-          success: "Utente creato con successo"
-        edit:
-          title: "Modifica utente"
-          submit: "Aggiorna utente"
-        update:
-          success: "✅ Utente aggiornato"
-        destroy:
-          success: "✅ Utente eliminato"
-          cannot_delete_self: "⚠️ Non puoi eliminare te stesso"
-
-    footer:
-      copyright: "© %{year} %{app_name}"
+        success: "✅ Utente aggiornato"
+  color_schemes:
+    dark: Scuro
+    light: Chiaro
+    system: Sistema
+  errors:
+    template:
+      header:
+        one: 1 errore ha impedito il salvataggio di questo record
+        other: "%{count} errori hanno impedito il salvataggio di questo record"
+  footer:
+    copyright: "© %{year} %{app_name}"
+  home:
+    index:
+      admin_panel: "👑 Pannello Admin"
+      signed_in_as: Hai effettuato l'accesso come %{email} (%{role})
+      welcome: "👋 Benvenuto"
+  locales:
+    en: English
+    it: Italiano
+    nl: Nederlands
+  nav:
+    admin: "👑 Admin"
+    home: "🏠 Home"
+    preferences: "⚙️ Preferenze"
+  preferences:
+    edit:
+      appearance: "🎨 Aspetto"
+      color_scheme: Schema colori
+      color_scheme_hint: Sistema segue le impostazioni del dispositivo
+      dark_theme: "🌙 Tema scuro"
+      language: "🌍 Lingua"
+      light_theme: "☀️ Tema chiaro"
+      locale: Lingua
+      submit: "💾 Salva preferenze"
+      timezone: Fuso orario
+      title: "⚙️ Preferenze"
+    update:
+      success: "✅ Preferenze aggiornate"
+  sessions:
+    create:
+      failure: "❌ Email o password non validi"
+      success: "✅ Accesso effettuato"
+    destroy:
+      success: "👋 Disconnessione effettuata"
+    new:
+      email: "📧 Email"
+      password: "🔒 Password"
+      submit: Accedi
+      title: "🔐 Accedi"
+    sign_in: "🔑 Accedi"
+    sign_out: "👋 Esci"
+  themes:
+    black: Nero
+    selenized_dark: Selenized Scuro
+    selenized_light: Selenized Chiaro
+    white: Bianco

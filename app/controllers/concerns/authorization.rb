@@ -4,8 +4,8 @@ module Authorization
   private
 
   def ensure_admin
-    unless Current.user&.admin?
-      redirect_to root_path, alert: "You must be an admin to access this page"
-    end
+    return if Current.user&.admin?
+
+    redirect_to root_path, alert: t("admin.authorization.require_admin")
   end
 end

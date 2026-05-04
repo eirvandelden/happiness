@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resource :preferences, only: [:edit, :update]
-  resource :session, only: [:new, :create, :destroy]
+  resource :preferences, only: [ :edit, :update ]
+  resource :session, only: [ :new, :create, :destroy ]
   namespace :admin do
     root "dashboard#index"
     resources :users
-    resources :dashboard, only: [:index]
+    resources :dashboard, only: [ :index ]
   end
   root "home#index"
   mount Faultline::Engine, at: "/faultline"
