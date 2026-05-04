@@ -52,6 +52,14 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "rubocop-capybara", require: false
+  gem "rubocop-minitest", require: false
+  gem "rubocop-obsession", require: false
+  gem "rubocop-packaging", require: false
+  gem "rubocop-rspec", require: false
+  gem "i18n-tasks"
+  gem "faker"
+  gem "dotenv-rails"
 end
 
 group :development do
@@ -66,20 +74,6 @@ group :test do
 end
 gem "bcrypt"
 gem "mvpa-css", github: "eirvandelden/mvpa.css"
-
-group :development, :test do
-  gem "bundler-audit", require: false
-  gem "rubocop-capybara", require: false
-  gem "rubocop-minitest", require: false
-  gem "rubocop-obsession", require: false
-  gem "rubocop-packaging", require: false
-  gem "rubocop-rspec", require: false
-  gem "i18n-tasks"
-  gem "faker"
-  gem "dotenv-rails"
-  gem "capybara"
-  gem "selenium-webdriver"
-end
 
 group :development do
   gem "letter_opener"

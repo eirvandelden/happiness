@@ -58,8 +58,8 @@ module SessionTestHelper
   #   assert_text "Dashboard"
   def system_sign_in_as(user)
     visit new_session_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "password"
-    click_button I18n.t("sessions.sign_in")
+    fill_in I18n.t("sessions.new.email"), with: user.email
+    fill_in I18n.t("sessions.new.password"), with: "password"
+    click_button I18n.t("sessions.new.submit")
   end
 end

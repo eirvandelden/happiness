@@ -1,10 +1,6 @@
 require "active_support/core_ext/integer/time"
 
-Rails.application.configure do
-
-# Email configuration - use SMTP
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
+smtp_settings = {
   address: ENV.fetch("SMTP_ADDRESS", "localhost"),
   port: ENV.fetch("SMTP_PORT", 587),
   domain: ENV.fetch("SMTP_DOMAIN", "example.com"),
@@ -13,8 +9,12 @@ config.action_mailer.smtp_settings = {
   authentication: ENV.fetch("SMTP_AUTHENTICATION", "plain"),
   enable_starttls_auto: ENV.fetch("SMTP_TLS", "true") == "true"
 }
-config.action_mailer.default_url_options = { host: ENV.fetch("BASE_URL", "example.com") }
+
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = smtp_settings
+  config.action_mailer.default_url_options = { host: ENV.fetch("BASE_URL", "example.com") }
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
@@ -69,18 +69,6 @@ config.action_mailer.default_url_options = { host: ENV.fetch("BASE_URL", "exampl
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-
-  # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "example.com" }
-
-  # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
-  # config.action_mailer.smtp_settings = {
-  #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
-  #   password: Rails.application.credentials.dig(:smtp, :password),
-  #   address: "smtp.example.com",
-  #   port: 587,
-  #   authentication: :plain
-  # }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

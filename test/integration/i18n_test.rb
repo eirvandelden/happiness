@@ -4,6 +4,14 @@ require "helpers/i18n_test_helper"
 class I18nTest < ActionDispatch::IntegrationTest
   include I18nTestHelper
 
+  test "app exposes only supported locales" do
+    assert_equal %i[en nl it], I18n.available_locales
+  end
+
+  test "app default locale is dutch" do
+    assert_equal :nl, I18n.default_locale
+  end
+
   test "all locales have required navigation keys" do
     nav_keys = %w[nav.home nav.preferences nav.admin]
 
@@ -31,7 +39,6 @@ class I18nTest < ActionDispatch::IntegrationTest
     I18n.available_locales.each do |locale|
       I18n.with_locale(locale) do
         assert_equal locale, I18n.locale
-        # Verify a basic translation works
         assert I18n.t("nav.home").present?
       end
     end
