@@ -1,0 +1,34 @@
+<h1><%= t(".title") %></h1>
+
+<%= form_with model: @state_of_mind, url: state_of_minds_path do |form| %>
+  <fieldset>
+    <legend><%= t(".mood_label") %></legend>
+    <% (1..5).each do |score| %>
+      <%= form.radio_button :mood_score, score, id: "mood_#{score}" %>
+      <label for="mood_<%= score %>"><%= t("state_of_minds.moods.#{score}") %></label>
+    <% end %>
+  </fieldset>
+
+  <fieldset>
+    <legend><%= t(".emotions_label") %></legend>
+    <% StateOfMind::EMOTIONS.each do |emotion| %>
+      <%= check_box_tag "state_of_mind[emotions][]", emotion, false, id: "emotion_#{emotion}" %>
+      <label for="emotion_<%= emotion %>"><%= t("state_of_minds.emotions.#{emotion}") %></label>
+    <% end %>
+  </fieldset>
+
+  <fieldset>
+    <legend><%= t(".contexts_label") %></legend>
+    <% StateOfMind::CONTEXTS.each do |context| %>
+      <%= check_box_tag "state_of_mind[contexts][]", context, false, id: "context_#{context}" %>
+      <label for="context_<%= context %>"><%= t("state_of_minds.contexts.#{context}") %></label>
+    <% end %>
+  </fieldset>
+
+  <div>
+    <%= form.label :note, t(".note_label") %>
+    <%= form.text_area :note %>
+  </div>
+
+  <%= form.submit t(".submit") %>
+<% end %>

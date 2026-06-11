@@ -21,7 +21,17 @@ class SessionsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
 
-    assert_equal root_path, path
+    assert_equal new_session_path, path
+    assert_match I18n.t("sessions.destroy.success"), response.body
+  end
+
+  test "unauthenticated user visiting protected route is redirected with flash" do
+    get root_path
+
+    assert_redirected_to new_session_path
+    follow_redirect!
+
+    assert_match I18n.t("authentication.please_sign_in"), response.body
   end
 
   test "invalid credentials do not sign in user" do

@@ -1,0 +1,9 @@
+---
+entry_one:
+  user: user
+  mood_score: 4
+  entry_type: momentary
+  emotions: '["happy", "calm"]'
+  contexts: '["work"]'
+  note: "Good day"
+  recorded_at: <%= 1.day.ago %>

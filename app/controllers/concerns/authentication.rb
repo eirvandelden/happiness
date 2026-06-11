@@ -34,6 +34,7 @@ module Authentication
 
   def request_authentication
     session[:return_to_after_authenticating] = request.url
+    flash[:alert] = t("authentication.please_sign_in")
     redirect_to new_session_path
   end
 
