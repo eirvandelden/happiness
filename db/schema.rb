@@ -107,9 +107,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_10_093126) do
   end
 
   create_table "state_of_minds", force: :cascade do |t|
-    t.json "contexts", default: "[]", null: false
+    t.json "contexts", default: [], null: false
     t.datetime "created_at", null: false
-    t.json "emotions", default: "[]", null: false
+    t.json "emotions", default: [], null: false
     t.string "entry_type", default: "momentary", null: false
     t.integer "mood_score", null: false
     t.text "note"

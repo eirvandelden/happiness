@@ -14,10 +14,10 @@ module ChartsHelper
 
   # Renders an inline SVG line chart of mood scores over time.
   #
-  # @param entries [Array<StateOfMind>] records ordered by recorded_at
+  # @param entries [Array<StateOfMind>] records to plot by recorded_at
   # @return [String] HTML-safe SVG markup, or an empty paragraph when no entries
   def svg_mood_chart(entries)
-    data = Array(entries).last(30)
+    data = Array(entries).sort_by(&:recorded_at).last(30)
     return content_tag(:p, "") if data.empty?
 
     d         = MOOD_CHART_DIMS

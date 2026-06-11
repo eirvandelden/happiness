@@ -30,6 +30,13 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_redirected_to state_of_minds_path
   end
 
+  test "invalid submission shows errors" do
+    post state_of_minds_path, params: { state_of_mind: { note: "Missing mood" } }
+
+    assert_response :unprocessable_entity
+    assert_select "aside[role=alert]"
+  end
+
   # Scenario 11: optional note persisted
   test "user can submit an entry with a note" do
     post state_of_minds_path, params: {

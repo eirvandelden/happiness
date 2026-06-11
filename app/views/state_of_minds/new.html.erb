@@ -1,6 +1,17 @@
 <h1><%= t(".title") %></h1>
 
 <%= form_with model: @state_of_mind, url: state_of_minds_path do |form| %>
+  <% if @state_of_mind.errors.any? %>
+    <aside role="alert">
+      <h2><%= t("errors.template.header", count: @state_of_mind.errors.count) %></h2>
+      <ul>
+        <% @state_of_mind.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </aside>
+  <% end %>
+
   <fieldset>
     <legend><%= t(".mood_label") %></legend>
     <% (1..5).each do |score| %>
