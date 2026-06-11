@@ -23,7 +23,10 @@
   <fieldset>
     <legend><%= t(".emotions_label") %></legend>
     <% StateOfMind::EMOTIONS.each do |emotion| %>
-      <%= check_box_tag "state_of_mind[emotions][]", emotion, false, id: "emotion_#{emotion}" %>
+      <%= check_box_tag "state_of_mind[emotions][]",
+                        emotion,
+                        @state_of_mind.emotions.include?(emotion),
+                        id: "emotion_#{emotion}" %>
       <label for="emotion_<%= emotion %>"><%= t("state_of_minds.emotions.#{emotion}") %></label>
     <% end %>
   </fieldset>
@@ -31,7 +34,10 @@
   <fieldset>
     <legend><%= t(".contexts_label") %></legend>
     <% StateOfMind::CONTEXTS.each do |context| %>
-      <%= check_box_tag "state_of_mind[contexts][]", context, false, id: "context_#{context}" %>
+      <%= check_box_tag "state_of_mind[contexts][]",
+                        context,
+                        @state_of_mind.contexts.include?(context),
+                        id: "context_#{context}" %>
       <label for="context_<%= context %>"><%= t("state_of_minds.contexts.#{context}") %></label>
     <% end %>
   </fieldset>

@@ -35,6 +35,19 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_select "aside[role=alert]"
   end
 
+  test "invalid submission preserves selected emotions and contexts" do
+    post state_of_minds_path, params: {
+      state_of_mind: {
+        emotions: [ "happy" ],
+        contexts: [ "work" ]
+      }
+    }
+
+    assert_response :unprocessable_entity
+    assert_select "input#emotion_happy[checked]"
+    assert_select "input#context_work[checked]"
+  end
+
   test "invalid entry type shows errors" do
     post state_of_minds_path, params: { state_of_mind: { mood_score: 4, entry_type: "unknown" } }
 
