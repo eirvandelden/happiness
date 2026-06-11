@@ -13,9 +13,23 @@ class StateOfMind < ApplicationRecord
   validate :emotions_are_known
   validate :contexts_are_known
 
+  before_validation :normalize_collections
   before_validation :set_recorded_at
 
   private
+
+  def normalize_collections
+    self.emotions = normalize_collection(emotions)
+    self.contexts = normalize_collection(contexts)
+  end
+
+  def normalize_collection(value)
+    return value unless value.is_a?(String)
+
+    JSON.parse(value)
+  rescue JSON::ParserError
+    value
+  end
 
   def set_recorded_at
     self.recorded_at ||= Time.current

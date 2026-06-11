@@ -8,6 +8,14 @@ class StateOfMindTest < ActiveSupport::TestCase
     assert_equal [], state_of_mind.contexts
   end
 
+  test "json string collection defaults are treated as empty arrays" do
+    state_of_mind = StateOfMind.new(user: users(:user), mood_score: 3, emotions: "[]", contexts: "[]")
+
+    assert_predicate state_of_mind, :valid?
+    assert_equal [], state_of_mind.emotions
+    assert_equal [], state_of_mind.contexts
+  end
+
   test "emotions must be known" do
     state_of_mind = StateOfMind.new(user: users(:user), mood_score: 3, emotions: [ "unknown" ])
 
