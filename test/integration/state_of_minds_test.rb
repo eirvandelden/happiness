@@ -7,7 +7,6 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     follow_redirect!
   end
 
-  # Scenario 9: form rendered
   test "user can visit new state of mind form" do
     get new_state_of_mind_path
     assert_response :success
@@ -16,7 +15,6 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_select "input[type=checkbox]" # emotion/context checkboxes
   end
 
-  # Scenario 10: valid submission
   test "user can submit a valid state of mind entry" do
     assert_difference "StateOfMind.count" do
       post state_of_minds_path, params: {
@@ -44,7 +42,6 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_select "aside[role=alert]"
   end
 
-  # Scenario 11: optional note persisted
   test "user can submit an entry with a note" do
     post state_of_minds_path, params: {
       state_of_mind: {
@@ -58,7 +55,6 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_equal "Just a test note", StateOfMind.last.note
   end
 
-  # Scenario 12: empty state
   test "index shows empty state when no entries" do
     StateOfMind.destroy_all
     get state_of_minds_path
@@ -67,7 +63,6 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_select "a[href='#{new_state_of_mind_path}']"
   end
 
-  # Scenario 13: entry appears in history
   test "index shows entry after submission" do
     get state_of_minds_path
     assert_response :success
@@ -75,14 +70,12 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_match "Good day", response.body
   end
 
-  # Scenario 14: mood trend SVG chart rendered
   test "index shows mood trend SVG chart when entries exist" do
     get state_of_minds_path
     assert_response :success
     assert_select "svg", minimum: 1
   end
 
-  # Scenario 15: emotion frequency SVG chart rendered
   test "index shows emotion frequency SVG chart when entries exist" do
     get state_of_minds_path
     assert_response :success
