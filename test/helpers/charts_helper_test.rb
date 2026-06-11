@@ -22,4 +22,15 @@ class ChartsHelperTest < ActionView::TestCase
 
     assert_match(/<circle[^>]+cx="620"[^>]+cy="20"/, svg)
   end
+
+  test "emotion chart translates labels" do
+    state_of_mind = StateOfMind.new(emotions: [ "happy" ])
+
+    I18n.with_locale(:nl) do
+      svg = svg_emotion_chart([ state_of_mind ])
+
+      assert_includes svg, I18n.t("state_of_minds.emotions.happy")
+      assert_no_match(/>happy</, svg)
+    end
+  end
 end

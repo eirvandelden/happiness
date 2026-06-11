@@ -105,7 +105,7 @@ module ChartsHelper
     bar_w = (count.to_f / max_count * bar_area).round
     y     = d[:pad_top] + index * d[:row_height]
 
-    label_el = tag.text(emotion.to_s,
+    label_el = tag.text(t("state_of_minds.emotions.#{emotion}"),
                         x: d[:label_width] - 4,
                         y: y + d[:row_height] / 2 + 4,
                         "text-anchor": "end",

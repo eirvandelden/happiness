@@ -37,6 +37,13 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_select "aside[role=alert]"
   end
 
+  test "invalid entry type shows errors" do
+    post state_of_minds_path, params: { state_of_mind: { mood_score: 4, entry_type: "unknown" } }
+
+    assert_response :unprocessable_entity
+    assert_select "aside[role=alert]"
+  end
+
   # Scenario 11: optional note persisted
   test "user can submit an entry with a note" do
     post state_of_minds_path, params: {
