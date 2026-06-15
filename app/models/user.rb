@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
+  has_many :state_of_minds, dependent: :destroy
 
   # Available locales
   AVAILABLE_LOCALES = %w[en nl it].freeze

@@ -2,8 +2,9 @@ module Authentication
   extend ActiveSupport::Concern
 
   included do
-    before_action :require_authentication
+    before_action :resume_session
     before_action :set_locale
+    before_action :require_authentication
     helper_method :authenticated?
   end
 
@@ -16,11 +17,11 @@ module Authentication
   private
 
   def authenticated?
-    resume_session
+    Current.user.present? || resume_session
   end
 
   def require_authentication
-    resume_session || request_authentication
+    request_authentication unless authenticated?
   end
 
   def resume_session
@@ -34,6 +35,7 @@ module Authentication
 
   def request_authentication
     session[:return_to_after_authenticating] = request.url
+    flash[:alert] = t("authentication.please_sign_in")
     redirect_to new_session_path
   end
 

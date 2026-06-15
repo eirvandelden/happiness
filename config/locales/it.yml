@@ -84,10 +84,14 @@ it:
         other: "%{count} errori hanno impedito il salvataggio di questo record"
   footer:
     copyright: "© %{year} %{app_name}"
+  authentication:
+    please_sign_in: "Accedi per continuare"
   home:
     index:
       admin_panel: "👑 Pannello Admin"
+      fill_mood: "Inserisci il tuo umore"
       signed_in_as: Hai effettuato l'accesso come %{email} (%{role})
+      view_history: "Visualizza cronologia"
       welcome: "👋 Benvenuto"
   locales:
     en: English
@@ -111,6 +115,48 @@ it:
       title: "⚙️ Preferenze"
     update:
       success: "✅ Preferenze aggiornate"
+  state_of_minds:
+    new:
+      title: "Come ti senti?"
+      submit: "Salva"
+      mood_label: "Umore generale"
+      emotions_label: "Cosa lo descrive meglio?"
+      contexts_label: "Cosa lo influenza?"
+      note_label: "Aggiungi una nota (opzionale)"
+    create:
+      success: "Voce salvata"
+    index:
+      title: "La mia cronologia dell'umore"
+      empty: "Nessuna voce ancora."
+      fill_first: "Inserisci la tua prima voce"
+    moods:
+      "1": "Molto spiacevole"
+      "2": "Spiacevole"
+      "3": "Neutro"
+      "4": "Piacevole"
+      "5": "Molto piacevole"
+    emotions:
+      happy: Felice
+      hopeful: Speranzoso
+      grateful: Grato
+      excited: Entusiasta
+      content: Soddisfatto
+      calm: Calmo
+      angry: Arrabbiato
+      sad: Triste
+      anxious: Ansioso
+      drained: Esausto
+      disgusted: Disgustato
+      indifferent: Indifferente
+    contexts:
+      work: Lavoro
+      relationships: Relazioni
+      health: Salute
+      sleep: Sonno
+      exercise: Esercizio
+      current_events: "Attualità"
+      weather: Meteo
+      other: Altro
   sessions:
     create:
       failure: "❌ Email o password non validi"

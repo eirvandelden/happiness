@@ -37,6 +37,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb
+    - db/schema.rb
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
@@ -82,4 +83,3 @@ Rails/IndexBy:
   Enabled: true
 Rails/IndexWith:
   Enabled: true
-

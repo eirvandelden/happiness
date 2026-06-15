@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_29_013500) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_10_093126) do
   create_table "faultline_error_contexts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "error_occurrence_id", null: false
@@ -106,6 +106,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_29_013500) do
     t.index [ "user_id" ], name: "index_sessions_on_user_id"
   end
 
+  create_table "state_of_minds", force: :cascade do |t|
+    t.json "contexts", default: [], null: false
+    t.datetime "created_at", null: false
+    t.json "emotions", default: [], null: false
+    t.string "entry_type", default: "momentary", null: false
+    t.integer "mood_score", null: false
+    t.text "note"
+    t.datetime "recorded_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index [ "entry_type" ], name: "index_state_of_minds_on_entry_type"
+    t.index [ "user_id" ], name: "index_state_of_minds_on_user_id"
+    t.check_constraint "entry_type IN ('momentary', 'daily')", name: "check_state_of_minds_entry_type_values"
+    t.check_constraint "mood_score BETWEEN 1 AND 5", name: "check_state_of_minds_mood_score_range"
+  end
+
   create_table "users", force: :cascade do |t|
     t.integer "color_scheme", default: 0, null: false
     t.datetime "created_at", null: false
@@ -126,4 +142,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_29_013500) do
   add_foreign_key "faultline_error_occurrences", "faultline_error_groups", column: "error_group_id"
   add_foreign_key "faultline_request_profiles", "faultline_request_traces", column: "request_trace_id", on_delete: :cascade
   add_foreign_key "sessions", "users"
+  add_foreign_key "state_of_minds", "users"
 end

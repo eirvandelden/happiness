@@ -3,6 +3,9 @@
 <% if authenticated? %>
   <p><%= t(".signed_in_as", email: Current.user.email, role: Current.user.role) %></p>
 
+  <p><%= link_to t(".fill_mood"), new_state_of_mind_path %></p>
+  <p><%= link_to t(".view_history"), state_of_minds_path %></p>
+
   <% if Current.user.admin? %>
     <p><%= link_to t(".admin_panel"), admin_root_path %></p>
   <% end %>
