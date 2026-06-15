@@ -18,16 +18,22 @@ class StateOfMindTest < ActiveSupport::TestCase
 
   test "emotions must be known" do
     state_of_mind = StateOfMind.new(user: users(:user), mood_score: 3, emotions: [ "unknown" ])
+    missing_emotions = StateOfMind.new(user: users(:user), mood_score: 3, emotions: nil)
 
     assert_not state_of_mind.valid?
     assert state_of_mind.errors.of_kind?(:emotions, :inclusion)
+    assert_not missing_emotions.valid?
+    assert missing_emotions.errors.of_kind?(:emotions, :inclusion)
   end
 
   test "contexts must be known" do
     state_of_mind = StateOfMind.new(user: users(:user), mood_score: 3, contexts: [ "unknown" ])
+    missing_contexts = StateOfMind.new(user: users(:user), mood_score: 3, contexts: nil)
 
     assert_not state_of_mind.valid?
     assert state_of_mind.errors.of_kind?(:contexts, :inclusion)
+    assert_not missing_contexts.valid?
+    assert missing_contexts.errors.of_kind?(:contexts, :inclusion)
   end
 
   test "database enforces mood score range" do

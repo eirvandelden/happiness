@@ -44,6 +44,6 @@ class StateOfMind < ApplicationRecord
   end
 
   def known_values?(values, allowed_values)
-    (Array(values) - allowed_values).empty?
+    values.is_a?(Array) && (values - allowed_values).empty?
   end
 end
