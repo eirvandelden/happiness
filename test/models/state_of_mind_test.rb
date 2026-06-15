@@ -29,4 +29,31 @@ class StateOfMindTest < ActiveSupport::TestCase
     assert_not state_of_mind.valid?
     assert state_of_mind.errors.of_kind?(:contexts, :inclusion)
   end
+
+  test "database enforces mood score range" do
+    assert_raises(ActiveRecord::StatementInvalid) do
+      StateOfMind.insert!(state_of_mind_attributes(mood_score: 99))
+    end
+  end
+
+  test "database enforces entry type values" do
+    assert_raises(ActiveRecord::StatementInvalid) do
+      StateOfMind.insert!(state_of_mind_attributes(entry_type: "weekly"))
+    end
+  end
+
+  private
+
+  def state_of_mind_attributes(overrides = {})
+    {
+      user_id: users(:user).id,
+      mood_score: 3,
+      entry_type: "momentary",
+      emotions: [],
+      contexts: [],
+      recorded_at: Time.current,
+      created_at: Time.current,
+      updated_at: Time.current
+    }.merge(overrides)
+  end
 end

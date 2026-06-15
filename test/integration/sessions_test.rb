@@ -34,6 +34,18 @@ class SessionsTest < ActionDispatch::IntegrationTest
     assert_match I18n.t("authentication.please_sign_in"), response.body
   end
 
+  test "unauthenticated redirect flash uses default locale" do
+    I18n.locale = :it
+    get root_path
+
+    assert_redirected_to new_session_path
+    follow_redirect!
+
+    assert_match I18n.t("authentication.please_sign_in", locale: I18n.default_locale), response.body
+  ensure
+    I18n.locale = I18n.default_locale
+  end
+
   test "invalid credentials do not sign in user" do
     post session_path, params: {
       email: @user.email,

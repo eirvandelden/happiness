@@ -12,5 +12,8 @@ class CreateStateOfMinds < ActiveRecord::Migration[8.1]
       t.timestamps
     end
     add_index :state_of_minds, :entry_type
+    add_check_constraint :state_of_minds, "mood_score BETWEEN 1 AND 5", name: "check_state_of_minds_mood_score_range"
+    add_check_constraint :state_of_minds, "entry_type IN ('momentary', 'daily')",
+                         name: "check_state_of_minds_entry_type_values"
   end
 end

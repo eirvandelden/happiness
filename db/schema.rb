@@ -118,6 +118,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_10_093126) do
     t.integer "user_id", null: false
     t.index [ "entry_type" ], name: "index_state_of_minds_on_entry_type"
     t.index [ "user_id" ], name: "index_state_of_minds_on_user_id"
+    t.check_constraint "entry_type IN ('momentary', 'daily')", name: "check_state_of_minds_entry_type_values"
+    t.check_constraint "mood_score BETWEEN 1 AND 5", name: "check_state_of_minds_mood_score_range"
   end
 
   create_table "users", force: :cascade do |t|
