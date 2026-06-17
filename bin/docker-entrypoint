@@ -6,7 +6,7 @@ if [ -f /usr/lib/*/libjemalloc.so.2 ]; then
 fi
 
 # Prepare the database when starting the Rails server.
-if [ "${*}" == "./bin/rails server" ]; then
+if [[ "${*}" == *"./bin/rails server"* ]]; then
   ./bin/rails db:prepare
 fi
 

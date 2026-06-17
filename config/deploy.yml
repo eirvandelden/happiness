@@ -14,7 +14,7 @@ proxy:
   hosts:
     - happiness.vandelden.family
   forward_headers: true
-  app_port: 3000
+  app_port: 80
   healthcheck:
     path: /up
     interval: 2
@@ -34,7 +34,7 @@ builder:
   local: false
   context: "."
   args:
-    RUBY_VERSION: <%= File.read('.ruby-version').strip %>
+    RUBY_VERSION: <%= File.read('.ruby-version').strip.delete_prefix('ruby-') %>
 
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
