@@ -48,3 +48,21 @@ test("does not request permission when periodic sync is unavailable", async () =
 
   assert.equal(permissionRequested(), false)
 })
+
+test("hides reminders when periodic sync registration is denied", async () => {
+  let registrationAttempts = 0
+  const registration = {
+    periodicSync: {
+      register: async () => {
+        registrationAttempts += 1
+        throw new Error("Permission denied")
+      },
+    },
+  }
+  const { controller } = buildController({ registration })
+
+  await assert.doesNotReject(() => controller.enable())
+
+  assert.equal(registrationAttempts, 1)
+  assert.equal(controller.element.hidden, true)
+})

@@ -6,6 +6,7 @@
     "faultline",
     "healthcheck",
     "httponly",
+    "importmap",
     "notificationclick",
     "onupgradeneeded",
     "periodicsync",

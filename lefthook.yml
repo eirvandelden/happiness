@@ -116,6 +116,14 @@ pre-push:
       tags: linter
       glob: "*.{js,ts,jsx,tsx}"
       run: yarn eslint {staged_files}
+    javascript-tests:
+      tags:
+        - javascript
+        - tests
+      glob:
+        - "app/javascript/**/*.js"
+        - "test/javascript/**/*.js"
+      run: yarn test
     rubocop:
       tags: linter
       glob: "*.rb"

@@ -24,9 +24,15 @@ export default class extends Controller {
   }
 
   async registerSync(registration) {
-    await registration.periodicSync.register('happiness-reminder', {
-      minInterval: 4 * 60 * 60 * 1000,
-    });
+    try {
+      await registration.periodicSync.register('happiness-reminder', {
+        minInterval: 4 * 60 * 60 * 1000,
+      });
+    } catch {
+      return false;
+    }
+
+    return true;
   }
 
   async reminderRegistration() {
