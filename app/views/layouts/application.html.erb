@@ -9,6 +9,7 @@
     <%= csp_meta_tag %>
     <%= yield :head %>
 
+    <link rel="manifest" href="<%= pwa_manifest_path(format: :json) %>">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -38,11 +39,24 @@
         <p role="alert"><%= flash[:alert] %></p>
       <% end %>
 
+      <% if authenticated? %>
+        <div data-controller="notifications">
+          <button data-action="click->notifications#enable">
+            <%= t("notifications.enable_reminders") %>
+          </button>
+        </div>
+      <% end %>
+
       <%= yield %>
     </main>
 
     <footer>
       <p><%= t("footer.copyright", year: Date.current.year, app_name: Rails.application.class.module_parent_name) %></p>
     </footer>
+    <script nonce="<%= content_security_policy_nonce %>">
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js', { scope: '/' });
+      }
+    </script>
   </body>
 </html>

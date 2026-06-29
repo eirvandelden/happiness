@@ -8,6 +8,7 @@ Rails.application.configure do
     policy.object_src :none
     policy.script_src :self, :https
     policy.style_src :self, :https, :unsafe_inline
+    policy.worker_src :self
     # If you need to enable unsafe_inline for scripts, do so thoughtfully
     # policy.script_src :self, :https, :unsafe_inline
   end

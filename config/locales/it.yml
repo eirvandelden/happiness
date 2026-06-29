@@ -73,6 +73,8 @@ it:
         title: "👤 Dettagli utente"
       update:
         success: "✅ Utente aggiornato"
+  authentication:
+    please_sign_in: Accedi per continuare
   color_schemes:
     dark: Scuro
     light: Chiaro
@@ -84,14 +86,12 @@ it:
         other: "%{count} errori hanno impedito il salvataggio di questo record"
   footer:
     copyright: "© %{year} %{app_name}"
-  authentication:
-    please_sign_in: "Accedi per continuare"
   home:
     index:
       admin_panel: "👑 Pannello Admin"
-      fill_mood: "Inserisci il tuo umore"
+      fill_mood: Inserisci il tuo umore
       signed_in_as: Hai effettuato l'accesso come %{email} (%{role})
-      view_history: "Visualizza cronologia"
+      view_history: Visualizza cronologia
       welcome: "👋 Benvenuto"
   locales:
     en: English
@@ -101,6 +101,10 @@ it:
     admin: "👑 Admin"
     home: "🏠 Home"
     preferences: "⚙️ Preferenze"
+  notifications:
+    enable_reminders: Attiva promemoria giornalieri
+    reminder_body: Come ti senti? Registra la tua felicità.
+    reminder_title: Felicità
   preferences:
     edit:
       appearance: "🎨 Aspetto"
@@ -115,48 +119,6 @@ it:
       title: "⚙️ Preferenze"
     update:
       success: "✅ Preferenze aggiornate"
-  state_of_minds:
-    new:
-      title: "Come ti senti?"
-      submit: "Salva"
-      mood_label: "Umore generale"
-      emotions_label: "Cosa lo descrive meglio?"
-      contexts_label: "Cosa lo influenza?"
-      note_label: "Aggiungi una nota (opzionale)"
-    create:
-      success: "Voce salvata"
-    index:
-      title: "La mia cronologia dell'umore"
-      empty: "Nessuna voce ancora."
-      fill_first: "Inserisci la tua prima voce"
-    moods:
-      "1": "Molto spiacevole"
-      "2": "Spiacevole"
-      "3": "Neutro"
-      "4": "Piacevole"
-      "5": "Molto piacevole"
-    emotions:
-      happy: Felice
-      hopeful: Speranzoso
-      grateful: Grato
-      excited: Entusiasta
-      content: Soddisfatto
-      calm: Calmo
-      angry: Arrabbiato
-      sad: Triste
-      anxious: Ansioso
-      drained: Esausto
-      disgusted: Disgustato
-      indifferent: Indifferente
-    contexts:
-      work: Lavoro
-      relationships: Relazioni
-      health: Salute
-      sleep: Sonno
-      exercise: Esercizio
-      current_events: "Attualità"
-      weather: Meteo
-      other: Altro
   sessions:
     create:
       failure: "❌ Email o password non validi"
@@ -170,6 +132,48 @@ it:
       title: "🔐 Accedi"
     sign_in: "🔑 Accedi"
     sign_out: "👋 Esci"
+  state_of_minds:
+    contexts:
+      current_events: Attualità
+      exercise: Esercizio
+      health: Salute
+      other: Altro
+      relationships: Relazioni
+      sleep: Sonno
+      weather: Meteo
+      work: Lavoro
+    create:
+      success: Voce salvata
+    emotions:
+      angry: Arrabbiato
+      anxious: Ansioso
+      calm: Calmo
+      content: Soddisfatto
+      disgusted: Disgustato
+      drained: Esausto
+      excited: Entusiasta
+      grateful: Grato
+      happy: Felice
+      hopeful: Speranzoso
+      indifferent: Indifferente
+      sad: Triste
+    index:
+      empty: Nessuna voce ancora.
+      fill_first: Inserisci la tua prima voce
+      title: La mia cronologia dell'umore
+    moods:
+      '1': Molto spiacevole
+      '2': Spiacevole
+      '3': Neutro
+      '4': Piacevole
+      '5': Molto piacevole
+    new:
+      contexts_label: Cosa lo influenza?
+      emotions_label: Cosa lo descrive meglio?
+      mood_label: Umore generale
+      note_label: Aggiungi una nota (opzionale)
+      submit: Salva
+      title: Come ti senti?
   themes:
     black: Nero
     selenized_dark: Selenized Scuro
