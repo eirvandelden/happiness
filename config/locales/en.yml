@@ -101,6 +101,10 @@ en:
     admin: "👑 Admin"
     home: "🏠 Home"
     preferences: "⚙️ Preferences"
+  notifications:
+    enable_reminders: "Enable daily reminders"
+    reminder_title: "Happiness"
+    reminder_body: "How are you feeling? Log your happiness."
   preferences:
     edit:
       appearance: "🎨 Appearance"

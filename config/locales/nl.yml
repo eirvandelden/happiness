@@ -101,6 +101,10 @@ nl:
     admin: "👑 Beheer"
     home: "🏠 Home"
     preferences: "⚙️ Voorkeuren"
+  notifications:
+    enable_reminders: "Dagelijkse herinneringen inschakelen"
+    reminder_title: "Geluk"
+    reminder_body: "Hoe voel je je? Leg je geluk vast."
   preferences:
     edit:
       appearance: "🎨 Weergave"

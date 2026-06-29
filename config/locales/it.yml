@@ -101,6 +101,10 @@ it:
     admin: "👑 Admin"
     home: "🏠 Home"
     preferences: "⚙️ Preferenze"
+  notifications:
+    enable_reminders: "Attiva promemoria giornalieri"
+    reminder_title: "Felicità"
+    reminder_body: "Come ti senti? Registra la tua felicità."
   preferences:
     edit:
       appearance: "🎨 Aspetto"
