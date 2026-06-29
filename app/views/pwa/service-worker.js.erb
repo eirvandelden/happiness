@@ -33,8 +33,8 @@ async function checkAndNotify() {
     const alreadyNotified = await dbGet(db, storageKey);
     if (alreadyNotified) continue;
 
-    await self.registration.showNotification('<%= I18n.t("notifications.reminder_title") %>', {
-      body: '<%= I18n.t("notifications.reminder_body") %>',
+    await self.registration.showNotification('<%= raw j(I18n.t("notifications.reminder_title")) %>', {
+      body: '<%= raw j(I18n.t("notifications.reminder_body")) %>',
       icon: '/icon.png',
       badge: '/icon.png',
       tag: `happiness-${key}`,
