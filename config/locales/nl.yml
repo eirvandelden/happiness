@@ -73,6 +73,8 @@ nl:
         title: "👤 Gebruikersdetails"
       update:
         success: "✅ Gebruiker succesvol bijgewerkt"
+  authentication:
+    please_sign_in: Log in om verder te gaan
   color_schemes:
     dark: Donker
     light: Licht
@@ -84,14 +86,12 @@ nl:
         other: "%{count} fouten verhinderden dat dit record werd opgeslagen"
   footer:
     copyright: "© %{year} %{app_name}"
-  authentication:
-    please_sign_in: "Log in om verder te gaan"
   home:
     index:
       admin_panel: "👑 Beheerpaneel"
-      fill_mood: "Vul je stemming in"
+      fill_mood: Vul je stemming in
       signed_in_as: Je bent ingelogd als %{email} (%{role})
-      view_history: "Bekijk geschiedenis"
+      view_history: Bekijk geschiedenis
       welcome: "👋 Welkom"
   locales:
     en: English
@@ -102,9 +102,9 @@ nl:
     home: "🏠 Home"
     preferences: "⚙️ Voorkeuren"
   notifications:
-    enable_reminders: "Dagelijkse herinneringen inschakelen"
-    reminder_title: "Geluk"
-    reminder_body: "Hoe voel je je? Leg je geluk vast."
+    enable_reminders: Dagelijkse herinneringen inschakelen
+    reminder_body: Hoe voel je je? Leg je geluk vast.
+    reminder_title: Geluk
   preferences:
     edit:
       appearance: "🎨 Weergave"
@@ -119,48 +119,6 @@ nl:
       title: "⚙️ Voorkeuren"
     update:
       success: "✅ Voorkeuren succesvol bijgewerkt"
-  state_of_minds:
-    new:
-      title: "Hoe voel je je?"
-      submit: "Opslaan"
-      mood_label: "Algemene stemming"
-      emotions_label: "Wat omschrijft het het beste?"
-      contexts_label: "Wat beïnvloedt dit?"
-      note_label: "Voeg een notitie toe (optioneel)"
-    create:
-      success: "Invoer opgeslagen"
-    index:
-      title: "Mijn stemmingsgeschiedenis"
-      empty: "Nog geen invoeren."
-      fill_first: "Vul je eerste invoer in"
-    moods:
-      "1": "Zeer onaangenaam"
-      "2": "Onaangenaam"
-      "3": "Neutraal"
-      "4": "Aangenaam"
-      "5": "Zeer aangenaam"
-    emotions:
-      happy: Blij
-      hopeful: Hoopvol
-      grateful: Dankbaar
-      excited: Enthousiast
-      content: Tevreden
-      calm: Rustig
-      angry: Boos
-      sad: Verdrietig
-      anxious: Angstig
-      drained: Uitgeput
-      disgusted: Walgend
-      indifferent: Onverschillig
-    contexts:
-      work: Werk
-      relationships: Relaties
-      health: Gezondheid
-      sleep: Slaap
-      exercise: Beweging
-      current_events: Actualiteiten
-      weather: Weer
-      other: Overig
   sessions:
     create:
       failure: "❌ Ongeldige e-mail of wachtwoord"
@@ -174,6 +132,48 @@ nl:
       title: "🔐 Inloggen"
     sign_in: "🔑 Inloggen"
     sign_out: "👋 Uitloggen"
+  state_of_minds:
+    contexts:
+      current_events: Actualiteiten
+      exercise: Beweging
+      health: Gezondheid
+      other: Overig
+      relationships: Relaties
+      sleep: Slaap
+      weather: Weer
+      work: Werk
+    create:
+      success: Invoer opgeslagen
+    emotions:
+      angry: Boos
+      anxious: Angstig
+      calm: Rustig
+      content: Tevreden
+      disgusted: Walgend
+      drained: Uitgeput
+      excited: Enthousiast
+      grateful: Dankbaar
+      happy: Blij
+      hopeful: Hoopvol
+      indifferent: Onverschillig
+      sad: Verdrietig
+    index:
+      empty: Nog geen invoeren.
+      fill_first: Vul je eerste invoer in
+      title: Mijn stemmingsgeschiedenis
+    moods:
+      '1': Zeer onaangenaam
+      '2': Onaangenaam
+      '3': Neutraal
+      '4': Aangenaam
+      '5': Zeer aangenaam
+    new:
+      contexts_label: Wat beïnvloedt dit?
+      emotions_label: Wat omschrijft het het beste?
+      mood_label: Algemene stemming
+      note_label: Voeg een notitie toe (optioneel)
+      submit: Opslaan
+      title: Hoe voel je je?
   themes:
     black: Zwart
     selenized_dark: Selenized Donker

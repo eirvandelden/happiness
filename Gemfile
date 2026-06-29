@@ -60,6 +60,7 @@ group :development, :test do
   gem "i18n-tasks"
   gem "faker"
   gem "dotenv-rails"
+  gem "herb"
 end
 
 group :development do

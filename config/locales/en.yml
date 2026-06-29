@@ -73,6 +73,8 @@ en:
         title: "👤 User Details"
       update:
         success: "✅ User updated successfully"
+  authentication:
+    please_sign_in: Please sign in to continue
   color_schemes:
     dark: Dark
     light: Light
@@ -84,14 +86,12 @@ en:
         other: "%{count} errors prohibited this record from being saved"
   footer:
     copyright: "© %{year} %{app_name}"
-  authentication:
-    please_sign_in: "Please sign in to continue"
   home:
     index:
       admin_panel: "👑 Admin Panel"
-      fill_mood: "Fill in your mood"
+      fill_mood: Fill in your mood
       signed_in_as: You are signed in as %{email} (%{role})
-      view_history: "View history"
+      view_history: View history
       welcome: "👋 Welcome"
   locales:
     en: English
@@ -102,9 +102,9 @@ en:
     home: "🏠 Home"
     preferences: "⚙️ Preferences"
   notifications:
-    enable_reminders: "Enable daily reminders"
-    reminder_title: "Happiness"
-    reminder_body: "How are you feeling? Log your happiness."
+    enable_reminders: Enable daily reminders
+    reminder_body: How are you feeling? Log your happiness.
+    reminder_title: Happiness
   preferences:
     edit:
       appearance: "🎨 Appearance"
@@ -119,48 +119,6 @@ en:
       title: "⚙️ Preferences"
     update:
       success: "✅ Preferences updated successfully"
-  state_of_minds:
-    new:
-      title: "How are you feeling?"
-      submit: "Save"
-      mood_label: "Overall mood"
-      emotions_label: "What best describes it?"
-      contexts_label: "What's influencing this?"
-      note_label: "Add a note (optional)"
-    create:
-      success: "Entry saved"
-    index:
-      title: "My mood history"
-      empty: "No entries yet."
-      fill_first: "Fill in your first entry"
-    moods:
-      "1": "Very unpleasant"
-      "2": "Unpleasant"
-      "3": "Neutral"
-      "4": "Pleasant"
-      "5": "Very pleasant"
-    emotions:
-      happy: Happy
-      hopeful: Hopeful
-      grateful: Grateful
-      excited: Excited
-      content: Content
-      calm: Calm
-      angry: Angry
-      sad: Sad
-      anxious: Anxious
-      drained: Drained
-      disgusted: Disgusted
-      indifferent: Indifferent
-    contexts:
-      work: Work
-      relationships: Relationships
-      health: Health
-      sleep: Sleep
-      exercise: Exercise
-      current_events: Current events
-      weather: Weather
-      other: Other
   sessions:
     create:
       failure: "❌ Invalid email or password"
@@ -174,6 +132,48 @@ en:
       title: "🔐 Sign in"
     sign_in: "🔑 Sign in"
     sign_out: "👋 Sign out"
+  state_of_minds:
+    contexts:
+      current_events: Current events
+      exercise: Exercise
+      health: Health
+      other: Other
+      relationships: Relationships
+      sleep: Sleep
+      weather: Weather
+      work: Work
+    create:
+      success: Entry saved
+    emotions:
+      angry: Angry
+      anxious: Anxious
+      calm: Calm
+      content: Content
+      disgusted: Disgusted
+      drained: Drained
+      excited: Excited
+      grateful: Grateful
+      happy: Happy
+      hopeful: Hopeful
+      indifferent: Indifferent
+      sad: Sad
+    index:
+      empty: No entries yet.
+      fill_first: Fill in your first entry
+      title: My mood history
+    moods:
+      '1': Very unpleasant
+      '2': Unpleasant
+      '3': Neutral
+      '4': Pleasant
+      '5': Very pleasant
+    new:
+      contexts_label: What's influencing this?
+      emotions_label: What best describes it?
+      mood_label: Overall mood
+      note_label: Add a note (optional)
+      submit: Save
+      title: How are you feeling?
   themes:
     black: Black
     selenized_dark: Selenized Dark
