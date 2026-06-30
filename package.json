@@ -3,10 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "stylelint": "stylelint",
     "test": "node --test test/javascript/*.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
-    "eslint": "^9.0.0"
+    "eslint": "^9.0.0",
+    "stylelint": "^17.14.0"
   }
 }

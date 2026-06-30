@@ -1,0 +1,22 @@
+.mood-slider {
+  grid-column: 1 / -1;
+}
+
+.mood-slider output {
+  display: block;
+  text-align: center;
+  font-weight: 500;
+  margin-block-end: 0.25rem;
+}
+
+.mood-slider input[type="range"] {
+  inline-size: 100%;
+}
+
+.mood-slider__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-small);
+  color: var(--color-fg-lighter);
+  margin-block-start: 0.25rem;
+}

@@ -19,6 +19,7 @@
       <nav>
         <%= link_to_unless_current t("nav.home"), root_path %>
         <% if authenticated? %>
+          <%= link_to_unless_current t("nav.history"), state_of_minds_path %>
           <%= link_to_unless_current t("nav.preferences"), edit_preferences_path %>
           <% if Current.user.admin? %>
             <%= link_to_unless_current t("nav.admin"), admin_root_path %>

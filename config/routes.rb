@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [ :index ]
   end
   resources :state_of_minds, only: [ :index, :new, :create ]
-  root "home#index"
+  root "state_of_minds#new"
   mount Faultline::Engine, at: "/faultline"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

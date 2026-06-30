@@ -1,8 +1,8 @@
 class StateOfMind < ApplicationRecord
   belongs_to :user
 
-  EMOTIONS = %w[happy hopeful grateful excited content calm angry sad anxious drained disgusted indifferent].freeze
-  CONTEXTS = %w[work relationships health sleep exercise current_events weather other].freeze
+  EMOTIONS = %w[happy hopeful grateful excited content calm angry frustrated sad anxious drained disgusted indifferent].freeze
+  CONTEXTS = %w[work relationships family health sleep exercise current_events weather other].freeze
   ENTRY_TYPES = %w[momentary daily].freeze
 
   enum :entry_type, { momentary: "momentary", daily: "daily" }, default: :momentary, validate: true

@@ -5,11 +5,12 @@ class AuthenticationTest < ApplicationSystemTestCase
     @user = users(:user)
   end
 
-  test "user can sign in and view dashboard" do
+  test "user can sign in and view mood form" do
     system_sign_in_as(@user)
 
     assert_current_path root_path
-    assert_text @user.email
+    assert_text I18n.t("state_of_minds.new.title")
+    assert_selector "form[action='#{state_of_minds_path}']"
   end
 
   test "user can sign out" do

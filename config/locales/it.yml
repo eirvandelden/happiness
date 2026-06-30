@@ -99,6 +99,7 @@ it:
     nl: Nederlands
   nav:
     admin: "👑 Admin"
+    history: "📖 Cronologia dell'umore"
     home: "🏠 Home"
     preferences: "⚙️ Preferenze"
   notifications:
@@ -136,6 +137,7 @@ it:
     contexts:
       current_events: Attualità
       exercise: Esercizio
+      family: Famiglia
       health: Salute
       other: Altro
       relationships: Relazioni
@@ -152,6 +154,7 @@ it:
       disgusted: Disgustato
       drained: Esausto
       excited: Entusiasta
+      frustrated: Frustrato
       grateful: Grato
       happy: Felice
       hopeful: Speranzoso
@@ -160,6 +163,7 @@ it:
     index:
       empty: Nessuna voce ancora.
       fill_first: Inserisci la tua prima voce
+      new_entry: "✏️ Registra nuovo umore"
       title: La mia cronologia dell'umore
     moods:
       '1': Molto spiacevole

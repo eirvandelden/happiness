@@ -11,7 +11,8 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     get new_state_of_mind_path
     assert_response :success
     assert_select "form"
-    assert_select "input[type=radio]"   # mood score buttons
+    assert_select "input[type=range]"   # mood score slider
+    assert_select "input[type=range][aria-label='#{I18n.t("state_of_minds.new.mood_label")}']"
     assert_select "input[type=checkbox]" # emotion/context checkboxes
   end
 
@@ -53,6 +54,14 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_entity
     assert_select "aside[role=alert]"
+  end
+
+  test "invalid mood score renders a known mood label" do
+    post state_of_minds_path, params: { state_of_mind: { mood_score: 99 } }
+
+    assert_response :unprocessable_entity
+    assert_no_match "translation_missing", response.body
+    assert_select "input[type=range][value='3']"
   end
 
   test "user can submit an entry with a note" do

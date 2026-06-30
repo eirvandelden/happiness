@@ -1,5 +1,7 @@
 <h1><%= t(".title") %></h1>
 
+<p><%= link_to t(".new_entry"), new_state_of_mind_path %></p>
+
 <% if @entries.empty? %>
   <p><%= t(".empty") %></p>
   <p><%= link_to t(".fill_first"), new_state_of_mind_path %></p>
