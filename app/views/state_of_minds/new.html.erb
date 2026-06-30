@@ -1,4 +1,6 @@
 <h1><%= t(".title") %></h1>
+<% mood_scores = 1..5 %>
+<% selected_mood_score = mood_scores.cover?(@state_of_mind.mood_score) ? @state_of_mind.mood_score : 3 %>
 
 <%= form_with model: @state_of_mind, url: state_of_minds_path do |form| %>
   <% if @state_of_mind.errors.any? %>
@@ -16,15 +18,16 @@
     <legend><%= t(".mood_label") %></legend>
     <div class="mood-slider"
          data-controller="mood-slider"
-         data-mood-slider-labels-value="<%= (1..5).to_h { |s| [s.to_s, t("state_of_minds.moods.#{s}")] }.to_json %>">
+         data-mood-slider-labels-value="<%= mood_scores.to_h { |s| [s.to_s, t("state_of_minds.moods.#{s}")] }.to_json %>">
       <output data-mood-slider-target="label">
-        <%= t("state_of_minds.moods.#{@state_of_mind.mood_score || 3}") %>
+        <%= t("state_of_minds.moods.#{selected_mood_score}") %>
       </output>
       <%= form.range_field :mood_score, min: 1, max: 5, step: 1,
-          value: (@state_of_mind.mood_score || 3),
+          value: selected_mood_score,
+          aria: { label: t(".mood_label") },
           data: { mood_slider_target: "input", action: "input->mood-slider#updateLabel" } %>
       <div class="mood-slider__labels">
-        <% (1..5).each do |score| %>
+        <% mood_scores.each do |score| %>
           <span><%= t("state_of_minds.moods.#{score}") %></span>
         <% end %>
       </div>
