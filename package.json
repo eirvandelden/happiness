@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "stylelint": "stylelint",
     "test": "node --test test/javascript/*.js"
   },
   "devDependencies": {

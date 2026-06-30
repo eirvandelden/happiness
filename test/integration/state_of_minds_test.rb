@@ -11,7 +11,7 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     get new_state_of_mind_path
     assert_response :success
     assert_select "form"
-    assert_select "input[type=radio]"   # mood score buttons
+    assert_select "input[type=range]"   # mood score slider
     assert_select "input[type=checkbox]" # emotion/context checkboxes
   end
 

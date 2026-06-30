@@ -6,6 +6,7 @@
  * 0_settings → 1_base → 2_layout → 3_components → 4_themes
  */
 @import url("mvpa/mvpa.css");
+@import url("2_modules/mood_slider.css");
 
 /*
  * Add your local CSS customizations below

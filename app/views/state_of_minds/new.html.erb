@@ -14,31 +14,46 @@
 
   <fieldset>
     <legend><%= t(".mood_label") %></legend>
-    <% (1..5).each do |score| %>
-      <%= form.radio_button :mood_score, score, id: "mood_#{score}" %>
-      <label for="mood_<%= score %>"><%= t("state_of_minds.moods.#{score}") %></label>
-    <% end %>
+    <div class="mood-slider"
+         data-controller="mood-slider"
+         data-mood-slider-labels-value="<%= (1..5).to_h { |s| [s.to_s, t("state_of_minds.moods.#{s}")] }.to_json %>">
+      <output data-mood-slider-target="label">
+        <%= t("state_of_minds.moods.#{@state_of_mind.mood_score || 3}") %>
+      </output>
+      <%= form.range_field :mood_score, min: 1, max: 5, step: 1,
+          value: (@state_of_mind.mood_score || 3),
+          data: { mood_slider_target: "input", action: "input->mood-slider#updateLabel" } %>
+      <div class="mood-slider__labels">
+        <% (1..5).each do |score| %>
+          <span><%= t("state_of_minds.moods.#{score}") %></span>
+        <% end %>
+      </div>
+    </div>
   </fieldset>
 
   <fieldset>
     <legend><%= t(".emotions_label") %></legend>
     <% StateOfMind::EMOTIONS.each do |emotion| %>
-      <%= check_box_tag "state_of_mind[emotions][]",
-                        emotion,
-                        @state_of_mind.emotions.include?(emotion),
-                        id: "emotion_#{emotion}" %>
-      <label for="emotion_<%= emotion %>"><%= t("state_of_minds.emotions.#{emotion}") %></label>
+      <label>
+        <%= check_box_tag "state_of_mind[emotions][]",
+                          emotion,
+                          @state_of_mind.emotions.include?(emotion),
+                          id: "emotion_#{emotion}" %>
+        <%= t("state_of_minds.emotions.#{emotion}") %>
+      </label>
     <% end %>
   </fieldset>
 
   <fieldset>
     <legend><%= t(".contexts_label") %></legend>
     <% StateOfMind::CONTEXTS.each do |context| %>
-      <%= check_box_tag "state_of_mind[contexts][]",
-                        context,
-                        @state_of_mind.contexts.include?(context),
-                        id: "context_#{context}" %>
-      <label for="context_<%= context %>"><%= t("state_of_minds.contexts.#{context}") %></label>
+      <label>
+        <%= check_box_tag "state_of_mind[contexts][]",
+                          context,
+                          @state_of_mind.contexts.include?(context),
+                          id: "context_#{context}" %>
+        <%= t("state_of_minds.contexts.#{context}") %>
+      </label>
     <% end %>
   </fieldset>
 

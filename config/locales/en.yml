@@ -99,6 +99,7 @@ en:
     nl: Nederlands
   nav:
     admin: "👑 Admin"
+    history: "📖 Mood history"
     home: "🏠 Home"
     preferences: "⚙️ Preferences"
   notifications:
@@ -136,6 +137,7 @@ en:
     contexts:
       current_events: Current events
       exercise: Exercise
+      family: Family
       health: Health
       other: Other
       relationships: Relationships
@@ -152,6 +154,7 @@ en:
       disgusted: Disgusted
       drained: Drained
       excited: Excited
+      frustrated: Frustrated
       grateful: Grateful
       happy: Happy
       hopeful: Hopeful
@@ -160,6 +163,7 @@ en:
     index:
       empty: No entries yet.
       fill_first: Fill in your first entry
+      new_entry: "✏️ Log new mood"
       title: My mood history
     moods:
       '1': Very unpleasant

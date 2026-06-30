@@ -99,6 +99,7 @@ nl:
     nl: Nederlands
   nav:
     admin: "👑 Beheer"
+    history: "📖 Stemming geschiedenis"
     home: "🏠 Home"
     preferences: "⚙️ Voorkeuren"
   notifications:
@@ -136,6 +137,7 @@ nl:
     contexts:
       current_events: Actualiteiten
       exercise: Beweging
+      family: Familie
       health: Gezondheid
       other: Overig
       relationships: Relaties
@@ -152,6 +154,7 @@ nl:
       disgusted: Walgend
       drained: Uitgeput
       excited: Enthousiast
+      frustrated: Gefrustreerd
       grateful: Dankbaar
       happy: Blij
       hopeful: Hoopvol
@@ -160,6 +163,7 @@ nl:
     index:
       empty: Nog geen invoeren.
       fill_first: Vul je eerste invoer in
+      new_entry: "✏️ Nieuwe stemming registreren"
       title: Mijn stemmingsgeschiedenis
     moods:
       '1': Zeer onaangenaam
