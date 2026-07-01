@@ -31,14 +31,14 @@
       </nav>
     </header>
 
-    <output aria-label="Notifications" data-mvpa-flashes>
+    <section aria-label="Notifications" data-mvpa-flashes>
       <% if flash[:notice] %>
         <aside role="status"><%= flash[:notice] %></aside>
       <% end %>
       <% if flash[:alert] %>
         <aside role="alert"><%= flash[:alert] %></aside>
       <% end %>
-    </output>
+    </section>
 
     <main>
 
