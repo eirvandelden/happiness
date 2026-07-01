@@ -13,7 +13,7 @@ class PreferencesTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_preferences_path
     follow_redirect!
 
-    assert_select "p[role=status]"
+    assert_select "aside[role=status]"
   end
 
   test "user can update timezone" do
@@ -22,7 +22,7 @@ class PreferencesTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_preferences_path
     follow_redirect!
 
-    assert_select "p[role=status]"
+    assert_select "aside[role=status]"
   end
 
   test "user can update theme settings" do
@@ -31,6 +31,6 @@ class PreferencesTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_preferences_path
     follow_redirect!
 
-    assert_select "p[role=status]"
+    assert_select "aside[role=status]"
   end
 end

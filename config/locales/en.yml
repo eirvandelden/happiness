@@ -104,6 +104,7 @@ en:
     preferences: "⚙️ Preferences"
   notifications:
     enable_reminders: Enable daily reminders
+    label: Notifications
     reminder_body: How are you feeling? Log your happiness.
     reminder_title: Happiness
   preferences:
