@@ -104,6 +104,7 @@ it:
     preferences: "⚙️ Preferenze"
   notifications:
     enable_reminders: Attiva promemoria giornalieri
+    label: Notifiche
     reminder_body: Come ti senti? Registra la tua felicità.
     reminder_title: Felicità
   preferences:

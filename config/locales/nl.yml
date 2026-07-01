@@ -104,6 +104,7 @@ nl:
     preferences: "⚙️ Voorkeuren"
   notifications:
     enable_reminders: Dagelijkse herinneringen inschakelen
+    label: Meldingen
     reminder_body: Hoe voel je je? Leg je geluk vast.
     reminder_title: Geluk
   preferences:

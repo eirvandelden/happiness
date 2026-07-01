@@ -43,4 +43,18 @@ class I18nTest < ActionDispatch::IntegrationTest
       end
     end
   end
+
+  test "notification landmark label uses current locale in application layout" do
+    sign_in_as(users(:user))
+    follow_redirect!
+
+    assert_select "section[aria-label=?]", I18n.t("notifications.label")
+  end
+
+  test "notification landmark label uses current locale in admin layout" do
+    sign_in_as(users(:admin))
+    get admin_root_path
+
+    assert_select "section[aria-label=?]", I18n.t("notifications.label")
+  end
 end
