@@ -13,7 +13,7 @@ default: &default
     mmap_size: 134217728
     cache_size: -20000
     wal_autocheckpoint: 10000
-  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 3 } %>
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
