@@ -27,7 +27,7 @@ COPY Gemfile Gemfile.lock .ruby-version ./
 RUN bundle lock --add-platform x86_64-linux \
  && bundle config set deployment true \
  && bundle config set without 'development test' \
- && bundle install --jobs 4 --retry 3 && \
+ && bundle install --jobs 1 --retry 3 && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 COPY . .
