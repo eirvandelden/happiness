@@ -1,6 +1,8 @@
 module Authentication
   extend ActiveSupport::Concern
 
+  SESSION_COOKIE_LIFETIME = 20.years
+
   included do
     before_action :resume_session
     before_action :set_locale
@@ -29,8 +31,19 @@ module Authentication
       if session = Session.find_by(token: session_token)
         Current.session = session
         Current.user = session.user
+        renew_session_cookie(session_token)
       end
     end
+  end
+
+  def renew_session_cookie(session_token)
+    cookies.signed[:session_token] = {
+      value: session_token,
+      httponly: true,
+      secure: Rails.env.production?,
+      same_site: :lax,
+      expires: SESSION_COOKIE_LIFETIME.from_now
+    }
   end
 
   def request_authentication
@@ -51,7 +64,13 @@ module Authentication
     user.update_column(:last_login_at, Time.current)
 
     Current.session = session
-    cookies.signed.permanent[:session_token] = { value: session.token, httponly: true, same_site: :lax }
+    cookies.signed[:session_token] = {
+      value: session.token,
+      httponly: true,
+      secure: Rails.env.production?,
+      same_site: :lax,
+      expires: SESSION_COOKIE_LIFETIME.from_now
+    }
 
     session
   end
