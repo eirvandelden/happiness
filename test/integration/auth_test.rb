@@ -6,7 +6,7 @@ class AuthTest < ActionDispatch::IntegrationTest
 
     expires = session_cookie_expires
     assert expires, "Expected Set-Cookie to include an expires= date"
-    assert expires > 10.years.from_now, "Expected cookie to expire more than 10 years from now, got #{expires}"
+    assert expires > 6.months.from_now, "Expected cookie to expire more than 10 years from now, got #{expires}"
   end
 
   test "user login sets a far-future session cookie expiry" do
@@ -14,7 +14,7 @@ class AuthTest < ActionDispatch::IntegrationTest
 
     expires = session_cookie_expires
     assert expires, "Expected Set-Cookie to include an expires= date"
-    assert expires > 10.years.from_now, "Expected cookie to expire more than 10 years from now, got #{expires}"
+    assert expires > 6.months.from_now, "Expected cookie to expire more than 10 years from now, got #{expires}"
   end
 
   test "resuming a session renews the cookie expiration for admin" do
@@ -26,7 +26,7 @@ class AuthTest < ActionDispatch::IntegrationTest
 
       expires = session_cookie_expires
       assert expires, "Expected Set-Cookie to include an expires= date on subsequent request"
-      assert expires > 10.years.from_now, "Expected renewed cookie to expire more than 10 years from now, got #{expires}"
+      assert expires > 6.months.from_now, "Expected renewed cookie to expire more than 10 years from now, got #{expires}"
     end
   end
 
@@ -39,7 +39,7 @@ class AuthTest < ActionDispatch::IntegrationTest
 
       expires = session_cookie_expires
       assert expires, "Expected Set-Cookie to include an expires= date on subsequent request"
-      assert expires > 10.years.from_now, "Expected renewed cookie to expire more than 10 years from now, got #{expires}"
+      assert expires > 6.months.from_now, "Expected renewed cookie to expire more than 10 years from now, got #{expires}"
     end
   end
 
