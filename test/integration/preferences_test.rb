@@ -26,7 +26,7 @@ class PreferencesTest < ActionDispatch::IntegrationTest
   end
 
   test "user can update theme settings" do
-    patch preferences_path, params: { user: { color_scheme: "light", light_theme: "white" } }
+    patch preferences_path, params: { user: { color_scheme: "light", light_theme: "solunized-white" } }
 
     assert_redirected_to edit_preferences_path
     follow_redirect!

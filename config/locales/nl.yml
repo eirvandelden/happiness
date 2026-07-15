@@ -180,7 +180,7 @@ nl:
       submit: Opslaan
       title: Hoe voel je je?
   themes:
-    black: Zwart
-    selenized_dark: Selenized Donker
-    selenized_light: Selenized Licht
-    white: Wit
+    solunized-black: Solunized Zwart
+    solunized-dark: Solunized Donker
+    solunized-light: Solunized Licht
+    solunized-white: Solunized Wit

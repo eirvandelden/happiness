@@ -5,8 +5,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static values = {
     colorScheme: { type: String, default: "system" },
-    lightTheme: { type: String, default: "selenized_light" },
-    darkTheme: { type: String, default: "selenized_dark" }
+    lightTheme: { type: String, default: "solunized-light" },
+    darkTheme: { type: String, default: "solunized-dark" }
   }
 
   connect() {

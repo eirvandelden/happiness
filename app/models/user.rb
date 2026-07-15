@@ -9,8 +9,8 @@ class User < ApplicationRecord
   # Enums
   enum :role, { user: 0, admin: 1 }, default: :user
   enum :color_scheme, { system: 0, light: 1, dark: 2 }, default: :system
-  enum :light_theme, { white: 0, selenized_light: 1 }, default: :selenized_light
-  enum :dark_theme, { black: 0, selenized_dark: 1 }, default: :selenized_dark
+  enum :light_theme, { "solunized-white": 0, "solunized-light": 1 }, default: :"solunized-light"
+  enum :dark_theme, { "solunized-black": 0, "solunized-dark": 1 }, default: :"solunized-dark"
 
   # Validations
   validates :name, presence: false

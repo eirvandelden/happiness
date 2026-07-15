@@ -180,7 +180,7 @@ en:
       submit: Save
       title: How are you feeling?
   themes:
-    black: Black
-    selenized_dark: Selenized Dark
-    selenized_light: Selenized Light
-    white: White
+    solunized-black: Solunized Black
+    solunized-dark: Solunized Dark
+    solunized-light: Solunized Light
+    solunized-white: Solunized White

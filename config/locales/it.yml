@@ -180,7 +180,7 @@ it:
       submit: Salva
       title: Come ti senti?
   themes:
-    black: Nero
-    selenized_dark: Selenized Scuro
-    selenized_light: Selenized Chiaro
-    white: Bianco
+    solunized-black: Solunized Nero
+    solunized-dark: Solunized Scuro
+    solunized-light: Solunized Chiaro
+    solunized-white: Solunized Bianco

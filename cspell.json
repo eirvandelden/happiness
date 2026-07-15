@@ -2,6 +2,7 @@
   "version": "0.2",
   "words": [
     "etienne",
+    "mvpa",
     "hotwired",
     "faultline",
     "healthcheck",
@@ -12,7 +13,7 @@
     "periodicsync",
     "readwrite",
     "rescuable",
-    "selenized",
+    "solunized",
     "starttls",
     "testtest",
     "tsvector"
