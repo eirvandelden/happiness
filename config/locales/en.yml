@@ -107,6 +107,11 @@ en:
     label: Notifications
     reminder_body: How are you feeling? Log your happiness.
     reminder_title: Happiness
+    status:
+      blocked: Notifications are blocked in your browser settings
+      enabled: Daily reminders are enabled
+      failed: Could not enable reminders. Try installing the app to your home screen first.
+      unsupported: Daily reminders are not supported by this browser
   preferences:
     edit:
       appearance: "🎨 Appearance"
@@ -116,6 +121,7 @@ en:
       language: "🌍 Language"
       light_theme: "☀️ Light Theme"
       locale: Locale
+      reminders: "🔔 Reminders"
       submit: "💾 Save Preferences"
       timezone: Timezone
       title: "⚙️ Preferences"

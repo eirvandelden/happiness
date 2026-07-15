@@ -33,4 +33,19 @@ class PreferencesTest < ActionDispatch::IntegrationTest
 
     assert_select "aside[role=status]"
   end
+
+  test "settings page shows the reminders control" do
+    get edit_preferences_path
+
+    assert_select "fieldset[data-controller=notifications]" do
+      assert_select "button[type=button]", text: I18n.t("notifications.enable_reminders")
+      assert_select "small[role=status][data-notifications-target=status]"
+    end
+  end
+
+  test "reminders control is not rendered in the global layout" do
+    get root_path
+
+    assert_select "[data-controller=notifications]", count: 0
+  end
 end
