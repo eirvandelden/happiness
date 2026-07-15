@@ -107,6 +107,11 @@ nl:
     label: Meldingen
     reminder_body: Hoe voel je je? Leg je geluk vast.
     reminder_title: Geluk
+    status:
+      blocked: Meldingen zijn geblokkeerd in je browserinstellingen
+      enabled: Dagelijkse herinneringen zijn ingeschakeld
+      failed: Herinneringen konden niet worden ingeschakeld. Installeer de app eerst op je beginscherm.
+      unsupported: Dagelijkse herinneringen worden niet ondersteund door deze browser
   preferences:
     edit:
       appearance: "🎨 Weergave"
@@ -116,6 +121,7 @@ nl:
       language: "🌍 Taal"
       light_theme: "☀️ Licht thema"
       locale: Taal
+      reminders: "🔔 Herinneringen"
       submit: "💾 Voorkeuren opslaan"
       timezone: Tijdzone
       title: "⚙️ Voorkeuren"

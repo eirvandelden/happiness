@@ -38,3 +38,18 @@
 
   <%= form.submit t(".submit") %>
 <% end %>
+
+<fieldset data-controller="notifications"
+          data-notifications-unsupported-value="<%= t("notifications.status.unsupported") %>"
+          data-notifications-blocked-value="<%= t("notifications.status.blocked") %>"
+          data-notifications-enabled-value="<%= t("notifications.status.enabled") %>"
+          data-notifications-failed-value="<%= t("notifications.status.failed") %>">
+  <legend><%= t(".reminders") %></legend>
+
+  <button type="button"
+          data-notifications-target="button"
+          data-action="click->notifications#enable">
+    <%= t("notifications.enable_reminders") %>
+  </button>
+  <small role="status" data-notifications-target="status" hidden></small>
+</fieldset>

@@ -41,15 +41,6 @@
     </section>
 
     <main>
-
-      <% if authenticated? %>
-        <div data-controller="notifications">
-          <button data-action="click->notifications#enable">
-            <%= t("notifications.enable_reminders") %>
-          </button>
-        </div>
-      <% end %>
-
       <%= yield %>
     </main>
 

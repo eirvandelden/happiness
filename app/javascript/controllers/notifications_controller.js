@@ -2,25 +2,42 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["button", "status"]
+  static values = {
+    unsupported: String,
+    blocked: String,
+    enabled: String,
+    failed: String,
+  }
 
   async connect() {
     const registration = await this.reminderRegistration();
-    if (!registration) return this.hide();
+    if (!registration) return this.showStatus(this.unsupportedValue);
 
     if (Notification.permission === 'granted') {
-      await this.registerSync(registration);
-      this.hide();
+      await this.finishEnabling(registration);
+    } else if (Notification.permission === 'denied') {
+      this.showStatus(this.blockedValue);
+    } else {
+      this.showButton();
     }
   }
 
   async enable() {
     const registration = await this.reminderRegistration();
-    if (!registration) return this.hide();
+    if (!registration) return this.showStatus(this.unsupportedValue);
 
     const permission = await Notification.requestPermission();
-    if (permission !== 'granted') return;
-    await this.registerSync(registration);
-    this.hide();
+    if (permission !== 'granted') return this.showStatus(this.blockedValue);
+
+    await this.finishEnabling(registration);
+  }
+
+  async finishEnabling(registration) {
+    if (await this.registerSync(registration)) {
+      this.showStatus(this.enabledValue);
+    } else {
+      this.showStatus(this.failedValue, { keepButton: true });
+    }
   }
 
   async registerSync(registration) {
@@ -48,7 +65,15 @@ export default class extends Controller {
     return 'serviceWorker' in navigator && 'Notification' in window;
   }
 
-  hide() {
-    this.element.hidden = true;
+  showStatus(message, { keepButton = false } = {}) {
+    this.statusTarget.textContent = message;
+    this.statusTarget.hidden = false;
+    this.buttonTarget.hidden = !keepButton;
+  }
+
+  showButton() {
+    this.buttonTarget.hidden = false;
+    this.statusTarget.hidden = true;
+    this.statusTarget.textContent = "";
   }
 }
