@@ -1,13 +1,15 @@
 <h1><%= t(".title") %></h1>
 
-<%= form_with url: session_path do |form| %>
-  <fieldset>
-    <label for="email"><%= t(".email") %></label>
-    <%= form.email_field :email, required: true, autofocus: true %>
+<article>
+  <%= form_with url: session_path do |form| %>
+    <fieldset>
+      <label for="email"><%= t(".email") %></label>
+      <%= form.email_field :email, required: true, autofocus: true %>
 
-    <label for="password"><%= t(".password") %></label>
-    <%= form.password_field :password, required: true %>
-  </fieldset>
+      <label for="password"><%= t(".password") %></label>
+      <%= form.password_field :password, required: true %>
+    </fieldset>
 
-  <%= form.submit t(".submit") %>
-<% end %>
+    <%= form.submit t(".submit") %>
+  <% end %>
+</article>

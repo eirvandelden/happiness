@@ -1,23 +1,26 @@
-<h1><%= t(".title") %></h1>
+<header>
+  <h1><%= t(".title") %></h1>
+  <%= link_to t(".new_entry"), new_state_of_mind_path %>
+</header>
 
-<p><%= link_to t(".new_entry"), new_state_of_mind_path %></p>
+<article>
+  <% if @entries.empty? %>
+    <p><%= t(".empty") %></p>
+    <p><%= link_to t(".fill_first"), new_state_of_mind_path %></p>
+  <% else %>
+    <ul>
+      <% @entries.each do |entry| %>
+        <li>
+          <%= l(entry.recorded_at, format: :short) %> —
+          <%= t("state_of_minds.moods.#{entry.mood_score}") %>
+          <% if entry.note.present? %>
+            — <%= entry.note %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
 
-<% if @entries.empty? %>
-  <p><%= t(".empty") %></p>
-  <p><%= link_to t(".fill_first"), new_state_of_mind_path %></p>
-<% else %>
-  <ul>
-    <% @entries.each do |entry| %>
-      <li>
-        <%= l(entry.recorded_at, format: :short) %> —
-        <%= t("state_of_minds.moods.#{entry.mood_score}") %>
-        <% if entry.note.present? %>
-          — <%= entry.note %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-
-  <%= svg_mood_chart(@entries) %>
-  <%= svg_emotion_chart(@entries) %>
-<% end %>
+    <%= svg_mood_chart(@entries) %>
+    <%= svg_emotion_chart(@entries) %>
+  <% end %>
+</article>
