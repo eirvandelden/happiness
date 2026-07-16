@@ -2,68 +2,70 @@
 <% mood_scores = 1..5 %>
 <% selected_mood_score = mood_scores.cover?(@state_of_mind.mood_score) ? @state_of_mind.mood_score : 3 %>
 
-<%= form_with model: @state_of_mind, url: state_of_minds_path do |form| %>
-  <% if @state_of_mind.errors.any? %>
-    <aside role="alert">
-      <h2><%= t("errors.template.header", count: @state_of_mind.errors.count) %></h2>
-      <ul>
-        <% @state_of_mind.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </aside>
-  <% end %>
+<article>
+  <%= form_with model: @state_of_mind, url: state_of_minds_path do |form| %>
+    <% if @state_of_mind.errors.any? %>
+      <aside role="alert">
+        <h2><%= t("errors.template.header", count: @state_of_mind.errors.count) %></h2>
+        <ul>
+          <% @state_of_mind.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </aside>
+    <% end %>
 
-  <fieldset>
-    <legend><%= t(".mood_label") %></legend>
-    <div class="mood-slider"
-         data-controller="mood-slider"
-         data-mood-slider-labels-value="<%= mood_scores.to_h { |s| [s.to_s, t("state_of_minds.moods.#{s}")] }.to_json %>">
-      <output data-mood-slider-target="label">
-        <%= t("state_of_minds.moods.#{selected_mood_score}") %>
-      </output>
-      <%= form.range_field :mood_score, min: 1, max: 5, step: 1,
-          value: selected_mood_score,
-          aria: { label: t(".mood_label") },
-          data: { mood_slider_target: "input", action: "input->mood-slider#updateLabel" } %>
-      <div class="mood-slider__labels">
-        <% mood_scores.each do |score| %>
-          <span><%= t("state_of_minds.moods.#{score}") %></span>
-        <% end %>
+    <fieldset>
+      <legend><%= t(".mood_label") %></legend>
+      <div class="mood-slider"
+           data-controller="mood-slider"
+           data-mood-slider-labels-value="<%= mood_scores.to_h { |s| [s.to_s, t("state_of_minds.moods.#{s}")] }.to_json %>">
+        <output data-mood-slider-target="label">
+          <%= t("state_of_minds.moods.#{selected_mood_score}") %>
+        </output>
+        <%= form.range_field :mood_score, min: 1, max: 5, step: 1,
+            value: selected_mood_score,
+            aria: { label: t(".mood_label") },
+            data: { mood_slider_target: "input", action: "input->mood-slider#updateLabel" } %>
+        <div class="mood-slider__labels">
+          <% mood_scores.each do |score| %>
+            <span><%= t("state_of_minds.moods.#{score}") %></span>
+          <% end %>
+        </div>
       </div>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= t(".emotions_label") %></legend>
+      <% StateOfMind::EMOTIONS.each do |emotion| %>
+        <label>
+          <%= check_box_tag "state_of_mind[emotions][]",
+                            emotion,
+                            @state_of_mind.emotions.include?(emotion),
+                            id: "emotion_#{emotion}" %>
+          <%= t("state_of_minds.emotions.#{emotion}") %>
+        </label>
+      <% end %>
+    </fieldset>
+
+    <fieldset>
+      <legend><%= t(".contexts_label") %></legend>
+      <% StateOfMind::CONTEXTS.each do |context| %>
+        <label>
+          <%= check_box_tag "state_of_mind[contexts][]",
+                            context,
+                            @state_of_mind.contexts.include?(context),
+                            id: "context_#{context}" %>
+          <%= t("state_of_minds.contexts.#{context}") %>
+        </label>
+      <% end %>
+    </fieldset>
+
+    <div>
+      <%= form.label :note, t(".note_label") %>
+      <%= form.text_area :note %>
     </div>
-  </fieldset>
 
-  <fieldset>
-    <legend><%= t(".emotions_label") %></legend>
-    <% StateOfMind::EMOTIONS.each do |emotion| %>
-      <label>
-        <%= check_box_tag "state_of_mind[emotions][]",
-                          emotion,
-                          @state_of_mind.emotions.include?(emotion),
-                          id: "emotion_#{emotion}" %>
-        <%= t("state_of_minds.emotions.#{emotion}") %>
-      </label>
-    <% end %>
-  </fieldset>
-
-  <fieldset>
-    <legend><%= t(".contexts_label") %></legend>
-    <% StateOfMind::CONTEXTS.each do |context| %>
-      <label>
-        <%= check_box_tag "state_of_mind[contexts][]",
-                          context,
-                          @state_of_mind.contexts.include?(context),
-                          id: "context_#{context}" %>
-        <%= t("state_of_minds.contexts.#{context}") %>
-      </label>
-    <% end %>
-  </fieldset>
-
-  <div>
-    <%= form.label :note, t(".note_label") %>
-    <%= form.text_area :note %>
-  </div>
-
-  <%= form.submit t(".submit") %>
-<% end %>
+    <%= form.submit t(".submit") %>
+  <% end %>
+</article>
