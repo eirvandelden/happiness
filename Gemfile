@@ -83,7 +83,7 @@ group :development do
 end
 gem "symbol-fstring"
 gem "exception_notification"
-gem "exception_notification-campfire-once", github: "eirvandelden/exception_notification-campfire-once", branch: "ai/reykjavik"
+gem "exception_notification-campfire-once", github: "eirvandelden/exception_notification-campfire-once"
 gem "data_migrate"
 gem "geared_pagination"
 gem "rails-i18n"
