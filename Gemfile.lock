@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/eirvandelden/exception_notification-campfire-once.git
-  revision: ba8d2ec8db6c96465233d06074b09929d5dc9100
+  revision: 8472c724465015c8e2d9ed4535c5e6e2c9bb817a
   specs:
-    exception_notification-campfire-once (0.1.0.pre.git.ba8d2ec)
+    exception_notification-campfire-once (0.1.0.pre.git.8472c72)
       exception_notification (>= 5.0)
 
 GIT
@@ -544,7 +544,7 @@ CHECKSUMS
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
   et-orbi (1.4.0) sha256=6c7e3c90779821f9e3b324c5e96fda9767f72995d6ae435b96678a4f3e2de8bc
   exception_notification (5.0.1) sha256=a9698c8d4670ec50f1714fd14a61a9f83da082d3b5535fd830baf3dc75ba28f9
-  exception_notification-campfire-once (0.1.0.pre.git.ba8d2ec)
+  exception_notification-campfire-once (0.1.0.pre.git.8472c72)
   faker (3.8.0) sha256=c147b308df73a90f27a4fc84f18d4c22ef0ad9c2a64b2b61c86fd0ca71753efc
   fugit (1.12.1) sha256=5898f478ede9b415f0804e42b8f3fd53f814bd85eebffceebdbc34e1107aaf68
   geared_pagination (1.2.0) sha256=16dc25b28e9d6945df27e9bcc6ed298d66eb9493ba45bf987037010724120cc7
