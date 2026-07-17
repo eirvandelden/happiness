@@ -44,6 +44,7 @@ env:
     SOLID_QUEUE_IN_PUMA: true
   secret:
     - RAILS_MASTER_KEY
+    - CAMPFIRE_WEBHOOK_URL
 
 # Aliases are triggered with "bin/kamal <alias>".
 aliases:

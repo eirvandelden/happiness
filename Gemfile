@@ -82,7 +82,8 @@ group :development do
   gem "lefthook"
 end
 gem "symbol-fstring"
-gem "faultline", github: "dlt/faultline"
+gem "exception_notification"
+gem "exception_notification-campfire-once", github: "eirvandelden/exception_notification-campfire-once"
 gem "data_migrate"
 gem "geared_pagination"
 gem "rails-i18n"
