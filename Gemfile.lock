@@ -1,10 +1,10 @@
 GIT
-  remote: https://github.com/dlt/faultline.git
-  revision: 711362c44b14483c1748b4acff8cd9aa773e3e59
+  remote: https://github.com/eirvandelden/exception_notification-campfire-once.git
+  revision: 5a668e91b7f0ab1d1c833fca832f31207983315c
+  branch: main
   specs:
-    faultline (0.1.0)
-      mcp (~> 0.15)
-      rails (>= 8.0)
+    exception_notification-campfire-once (0.1.0.pre.git.0da3840)
+      exception_notification (>= 5.0)
 
 GIT
   remote: https://github.com/eirvandelden/mvpa.css.git
@@ -137,6 +137,9 @@ GEM
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
+    exception_notification (5.0.1)
+      actionmailer (>= 7.1, < 9)
+      activesupport (>= 7.1, < 9)
     faker (3.8.0)
       i18n (>= 1.8.11, < 2)
     fugit (1.12.1)
@@ -185,9 +188,6 @@ GEM
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     json (2.21.1)
-    json-schema (6.2.0)
-      addressable (~> 2.8)
-      bigdecimal (>= 3.1, < 5)
     kamal (2.11.0)
       activesupport (>= 7.0)
       base64 (~> 0.2)
@@ -220,8 +220,6 @@ GEM
       net-smtp
     marcel (1.2.1)
     matrix (0.4.3)
-    mcp (0.18.0)
-      json-schema (>= 4.1)
     mini_mime (1.1.5)
     minitest (6.0.6)
       drb (~> 2.0)
@@ -471,8 +469,9 @@ DEPENDENCIES
   data_migrate
   debug
   dotenv-rails
+  exception_notification
+  exception_notification-campfire-once!
   faker
-  faultline!
   geared_pagination
   herb
   i18n-tasks
@@ -545,8 +544,9 @@ CHECKSUMS
   erb (6.0.4) sha256=38e3803694be357fe2bfe312487c74beaf9fb4e5beb3e22498952fe1645b95d9
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
   et-orbi (1.4.0) sha256=6c7e3c90779821f9e3b324c5e96fda9767f72995d6ae435b96678a4f3e2de8bc
+  exception_notification (5.0.1) sha256=a9698c8d4670ec50f1714fd14a61a9f83da082d3b5535fd830baf3dc75ba28f9
+  exception_notification-campfire-once (0.1.0.pre.git.0da3840)
   faker (3.8.0) sha256=c147b308df73a90f27a4fc84f18d4c22ef0ad9c2a64b2b61c86fd0ca71753efc
-  faultline (0.1.0)
   fugit (1.12.1) sha256=5898f478ede9b415f0804e42b8f3fd53f814bd85eebffceebdbc34e1107aaf68
   geared_pagination (1.2.0) sha256=16dc25b28e9d6945df27e9bcc6ed298d66eb9493ba45bf987037010724120cc7
   globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
@@ -566,7 +566,6 @@ CHECKSUMS
   irb (1.18.0) sha256=de9454a0703a54704b9811a5ef31a60c86949fbf4013fcf244fabc7c775248e3
   jbuilder (2.15.1) sha256=2430bec28fb0cebacb5875b1009cf9d8bc3c303ccb810c4c8b062a4b51457637
   json (2.21.1) sha256=13a43df75d95641443f5702dff350f237164a9d811ff0f2c2800d4d980220583
-  json-schema (6.2.0) sha256=e8bff46ed845a22c1ab2bd0d7eccf831c01fe23bb3920caa4c74db4306813666
   kamal (2.11.0) sha256=1408864425e0dec7e0a14d712a3b13f614e9f3a425b7661d3f9d287a51d7dd75
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
   launchy (3.1.1) sha256=72b847b5cc961589dde2c395af0108c86ff0119f42d4648d25b5440ebb10059e
@@ -578,7 +577,6 @@ CHECKSUMS
   mail (2.9.0) sha256=6fa6673ecd71c60c2d996260f9ee3dd387d4673b8169b502134659ece6d34941
   marcel (1.2.1) sha256=1678e9360e32f9eafa917c80029e2f6d10b2715c66a4b87b6d0da9b9cd1f859f
   matrix (0.4.3) sha256=a0d5ab7ddcc1973ff690ab361b67f359acbb16958d1dc072b8b956a286564c5b
-  mcp (0.18.0) sha256=4d8ec572c1536f53370196539d5272355fb6480ed969ea58a8d24917ee2562c8
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
   minitest (6.0.6) sha256=153ea36d1d987a62942382b61075745042a2b3123b1cd48f4c3675af9cc7d6f1
   msgpack (1.8.2) sha256=e440d11c99d6dfe8b2fbc4feb74c3518c1ba024357c70bbd734d9bb1a44d0d25
