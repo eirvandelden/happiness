@@ -9,6 +9,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
     sign_in_as(@user)
 
     assert_response :redirect
+    assert_equal I18n.t("sessions.create.success"), flash[:notice]
     follow_redirect!
 
     assert_equal root_path, path
@@ -19,6 +20,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
     sign_out
 
     assert_response :redirect
+    assert_equal I18n.t("sessions.destroy.success"), flash[:notice]
     follow_redirect!
 
     assert_equal root_path, path

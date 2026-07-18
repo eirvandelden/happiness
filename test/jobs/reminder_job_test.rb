@@ -52,6 +52,33 @@ class ReminderJobTest < ActiveJob::TestCase
     end
   end
 
+  test "does not fire for a user whose local time is outside every window, even if server (UTC) time is inside one" do
+    @user.push_subscriptions.destroy_all
+    tokyo_user = users(:tokyo_user)
+    tokyo_user.push_subscriptions.create!(endpoint: "https://push.example/#{SecureRandom.hex}", p256dh_key: "k", auth_key: "a")
+
+    # 10:00 UTC is inside the 09:30-12:30 window, but Tokyo (UTC+9) local time is
+    # 19:00, which falls between the 14:30-17:30 and 19:30-22:30 windows.
+    travel_to time_at(10, 0) do
+      assert_no_enqueued_jobs only: Appkit::PushNotificationJob do
+        ReminderJob.perform_now
+      end
+    end
+  end
+
+  test "fires for a user whose local time is inside a window, even if server (UTC) time is outside every window" do
+    tokyo_user = users(:tokyo_user)
+    tokyo_user.push_subscriptions.create!(endpoint: "https://push.example/#{SecureRandom.hex}", p256dh_key: "k", auth_key: "a")
+
+    # 13:00 UTC is outside every window, but Tokyo (UTC+9) local time is 22:00,
+    # which falls inside the 19:30-22:30 window.
+    travel_to time_at(13, 0) do
+      assert_enqueued_with(job: Appkit::PushNotificationJob) do
+        ReminderJob.perform_now
+      end
+    end
+  end
+
   private
 
   def time_at(hour, minute)

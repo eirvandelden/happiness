@@ -1,22 +1,21 @@
 class ReminderJob < ApplicationJob
   # Local-time windows ported from the former periodicSync service worker: users
-  # are nudged once per window per day if they have not yet logged a mood.
+  # are nudged once per window per day if they have not yet logged a mood, evaluated
+  # in each user's own timezone rather than the server's.
   WINDOWS = [ [ 9, 30, 12, 30 ], [ 14, 30, 17, 30 ], [ 19, 30, 22, 30 ] ].freeze
 
   def perform
-    window = current_window
-    return unless window
-
-    User.due_for_reminder(window).find_each { |user| remind(user) }
+    User.joins(:push_subscriptions).distinct.find_each { |user| remind_if_due(user) }
   end
 
   private
 
-  def current_window
-    now = Time.zone.now
-    WINDOWS
-      .map { |sh, sm, eh, em| now.change(hour: sh, min: sm)..now.change(hour: eh, min: em) }
-      .find { |range| range.cover?(now) }
+  def remind_if_due(user)
+    window = user.current_reminder_window(WINDOWS)
+    return unless window
+    return if user.recorded_within?(window)
+
+    remind(user)
   end
 
   def remind(user)

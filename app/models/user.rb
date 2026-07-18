@@ -30,18 +30,23 @@ class User < ApplicationRecord
   # Set default locale
   after_initialize :set_defaults, if: :new_record?
 
-  # Subscribed users who have not yet recorded an entry within the given time window.
-  def self.due_for_reminder(window)
-    joins(:push_subscriptions).distinct.where.not(id: recorded_within(window))
-  end
-
-  def self.recorded_within(window)
-    StateOfMind.where(recorded_at: window).select(:user_id)
-  end
-
   # Return timezone as ActiveSupport::TimeZone object
   def time_zone
     ActiveSupport::TimeZone[timezone]
+  end
+
+  # The reminder window (out of the given windows) that covers this user's current
+  # local time, or nil if their local time is outside every window right now.
+  def current_reminder_window(windows)
+    now = time_zone.now
+    windows
+      .map { |sh, sm, eh, em| now.change(hour: sh, min: sm)..now.change(hour: eh, min: em) }
+      .find { |range| range.cover?(now) }
+  end
+
+  # Whether this user already recorded an entry within the given (timezone-aware) window.
+  def recorded_within?(window)
+    state_of_minds.where(recorded_at: window).exists?
   end
 
   private

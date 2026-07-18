@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  # Overrides Appkit::Engine's session route to route to the local SessionsController
+  # (which restores sign-in/sign-out flash messages). Must be declared before the engine
+  # mount so it takes precedence.
+  resource :session, only: %i[new create destroy], controller: "sessions" do
+    resources :transfers, only: %i[show update], controller: "appkit/sessions/transfers"
+  end
+
   mount Appkit::Engine => "/"
 
   namespace :admin do

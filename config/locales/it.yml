@@ -101,14 +101,8 @@ it:
     preferences: "⚙️ Preferenze"
   notifications:
     enable_reminders: Attiva promemoria giornalieri
-    label: Notifiche
     reminder_body: Come ti senti? Registra la tua felicità.
     reminder_title: Felicità
-    status:
-      blocked: Le notifiche sono bloccate nelle impostazioni del browser
-      enabled: I promemoria giornalieri sono attivi
-      failed: Impossibile attivare i promemoria. Installa prima l'app nella schermata Home.
-      unsupported: I promemoria giornalieri non sono supportati da questo browser
   preferences:
     edit:
       appearance: "🎨 Aspetto"
@@ -125,6 +119,10 @@ it:
     update:
       success: "✅ Preferenze aggiornate"
   sessions:
+    create:
+      success: "✅ Accesso effettuato"
+    destroy:
+      success: "👋 Disconnessione effettuata"
     sign_in: "🔑 Accedi"
     sign_out: "👋 Esci"
   state_of_minds:
