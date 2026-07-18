@@ -43,6 +43,14 @@ class AuthTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "signing in records last_login_at, an app-specific concern layered onto appkit's session start" do
+    user = users(:user)
+
+    assert_changes -> { user.reload.last_login_at } do
+      sign_in_as(user)
+    end
+  end
+
   private
 
   def session_cookie_expires

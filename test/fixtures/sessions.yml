@@ -3,9 +3,11 @@ user_session:
   token: user_token_123
   ip_address: 127.0.0.1
   user_agent: Test Browser
+  last_active_at: <%= 2.hours.ago %>
 
 admin_session:
   user: admin
   token: admin_token_456
   ip_address: 127.0.0.1
   user_agent: Test Browser
+  last_active_at: <%= 1.hour.ago %>

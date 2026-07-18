@@ -72,8 +72,6 @@ it:
         title: "👤 Dettagli utente"
       update:
         success: "✅ Utente aggiornato"
-  authentication:
-    please_sign_in: Accedi per continuare
   color_schemes:
     dark: Scuro
     light: Chiaro
@@ -127,16 +125,6 @@ it:
     update:
       success: "✅ Preferenze aggiornate"
   sessions:
-    create:
-      failure: "❌ Email o password non validi"
-      success: "✅ Accesso effettuato"
-    destroy:
-      success: "👋 Disconnessione effettuata"
-    new:
-      email: "📧 Email"
-      password: "🔒 Password"
-      submit: Accedi
-      title: "🔐 Accedi"
     sign_in: "🔑 Accedi"
     sign_out: "👋 Esci"
   state_of_minds:

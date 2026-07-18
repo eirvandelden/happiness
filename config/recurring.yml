@@ -13,3 +13,9 @@ production:
   clear_solid_queue_finished_jobs:
     command: "SolidQueue::Job.clear_finished_in_batches(sleep_between_batches: 0.3)"
     schedule: every hour at minute 12
+  # One representative time inside each reminder window (09:30-12:30, 14:30-17:30,
+  # 19:30-22:30). Firing once per window lets ReminderJob dedupe purely on whether
+  # the user has logged a mood in that window, without tracking sent state.
+  mood_reminders:
+    class: ReminderJob
+    schedule: "0 11,16,21 * * *"

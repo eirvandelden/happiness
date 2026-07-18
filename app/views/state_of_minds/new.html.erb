@@ -1,8 +1,9 @@
-<h1><%= t(".title") %></h1>
 <% mood_scores = 1..5 %>
 <% selected_mood_score = mood_scores.cover?(@state_of_mind.mood_score) ? @state_of_mind.mood_score : 3 %>
 
 <article>
+  <h1><%= t(".title") %></h1>
+
   <%= form_with model: @state_of_mind, url: state_of_minds_path do |form| %>
     <% if @state_of_mind.errors.any? %>
       <aside role="alert">

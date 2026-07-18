@@ -17,8 +17,8 @@ class AuthenticationTest < ApplicationSystemTestCase
     system_sign_in_as(@user)
     click_button I18n.t("sessions.sign_out")
 
-    assert_current_path root_path
-    assert_text I18n.t("sessions.destroy.success")
+    # Appkit signs out to root_url; root requires auth and bounces to the login page.
+    assert_current_path new_session_path
   end
 
   test "user cannot access without signing in" do

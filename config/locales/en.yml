@@ -72,8 +72,6 @@ en:
         title: "👤 User Details"
       update:
         success: "✅ User updated successfully"
-  authentication:
-    please_sign_in: Please sign in to continue
   color_schemes:
     dark: Dark
     light: Light
@@ -127,16 +125,6 @@ en:
     update:
       success: "✅ Preferences updated successfully"
   sessions:
-    create:
-      failure: "❌ Invalid email or password"
-      success: "✅ Signed in successfully"
-    destroy:
-      success: "👋 Signed out successfully"
-    new:
-      email: "📧 Email"
-      password: "🔒 Password"
-      submit: Sign in
-      title: "🔐 Sign in"
     sign_in: "🔑 Sign in"
     sign_out: "👋 Sign out"
   state_of_minds:

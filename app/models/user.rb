@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_secure_password
-  has_many :sessions, dependent: :destroy
+  include Appkit::Authenticatable
+  include Appkit::UserTheming
+
   has_many :state_of_minds, dependent: :destroy
 
   # Available locales
@@ -8,9 +9,6 @@ class User < ApplicationRecord
 
   # Enums
   enum :role, { user: 0, admin: 1 }, default: :user
-  enum :color_scheme, { system: 0, light: 1, dark: 2 }, default: :system
-  enum :light_theme, { "solunized-white": 0, "solunized-light": 1 }, default: :"solunized-light"
-  enum :dark_theme, { "solunized-black": 0, "solunized-dark": 1 }, default: :"solunized-dark"
 
   # Validations
   validates :name, presence: false
@@ -31,6 +29,15 @@ class User < ApplicationRecord
 
   # Set default locale
   after_initialize :set_defaults, if: :new_record?
+
+  # Subscribed users who have not yet recorded an entry within the given time window.
+  def self.due_for_reminder(window)
+    joins(:push_subscriptions).distinct.where.not(id: recorded_within(window))
+  end
+
+  def self.recorded_within(window)
+    StateOfMind.where(recorded_at: window).select(:user_id)
+  end
 
   # Return timezone as ActiveSupport::TimeZone object
   def time_zone

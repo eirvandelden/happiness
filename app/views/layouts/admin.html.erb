@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>" <%= tag.attributes(theme_attributes) %>>
+<html lang="<%= I18n.locale %>" data-controller="theme" <%= tag.attributes(theme_attributes) %>>
   <head>
     <title><%= t("admin.title") %> - <%= Rails.application.class.module_parent_name %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="view-transition" content="same-origin">
+    <meta name="color-scheme" content="light dark">
     <meta name="turbo-cache-control" content="no-cache">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= render "appkit/shared/pwa_meta" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -21,14 +24,7 @@
       </nav>
     </header>
 
-    <section aria-label="<%= t("notifications.label") %>" data-mvpa-flashes>
-      <% if flash[:notice] %>
-        <aside role="status"><%= flash[:notice] %></aside>
-      <% end %>
-      <% if flash[:alert] %>
-        <aside role="alert"><%= flash[:alert] %></aside>
-      <% end %>
-    </section>
+    <%= render "appkit/shared/flashes" %>
 
     <main>
       <%= yield %>

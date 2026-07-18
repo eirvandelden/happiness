@@ -21,39 +21,26 @@ class SessionsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
 
-    assert_equal new_session_path, path
-    assert_match I18n.t("sessions.destroy.success"), response.body
+    assert_equal root_path, path
   end
 
-  test "unauthenticated user visiting protected route is redirected with flash" do
+  # Appkit::Authentication#request_authentication does not set a flash message
+  # (it only stores return_to_after_authenticating); the login form is enough
+  # context for the redirect, matching the engine's canonical behavior.
+  test "unauthenticated user visiting protected route is redirected to sign in" do
     get root_path
 
     assert_redirected_to new_session_path
-    follow_redirect!
-
-    assert_match I18n.t("authentication.please_sign_in"), response.body
-  end
-
-  test "unauthenticated redirect flash uses default locale" do
-    I18n.locale = :it
-    get root_path
-
-    assert_redirected_to new_session_path
-    follow_redirect!
-
-    assert_match I18n.t("authentication.please_sign_in", locale: I18n.default_locale), response.body
-  ensure
-    I18n.locale = I18n.default_locale
   end
 
   test "invalid credentials do not sign in user" do
     post session_path, params: {
-      email: @user.email,
+      email_address: @user.email,
       password: "wrong-password"
     }
 
-    assert_response :unprocessable_entity
-    assert_match I18n.t("sessions.create.failure"), response.body
+    assert_response :unauthorized
+    assert_match I18n.t("appkit.sessions.rejection"), response.body
     get root_path
     assert_redirected_to new_session_path
   end
