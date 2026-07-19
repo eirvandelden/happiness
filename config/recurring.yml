@@ -21,3 +21,6 @@ production:
   mood_reminders:
     class: ReminderJob
     schedule: every 15 minutes
+  appkit_session_expiry:
+    class: Appkit::SessionExpiryJob
+    schedule: every day at midnight
