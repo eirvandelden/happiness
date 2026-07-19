@@ -61,5 +61,10 @@ module SessionTestHelper
     fill_in I18n.t("appkit.sessions.new.email_placeholder"), with: user.email
     fill_in I18n.t("appkit.sessions.new.password_placeholder"), with: "password"
     click_button I18n.t("appkit.sessions.new.submit")
+
+    # Login form submits are Turbo-driven (async), so click_button returns
+    # before the session cookie is set - wait for the login layout to
+    # disappear before letting the caller navigate anywhere else.
+    assert_no_selector "body[data-appkit-login]"
   end
 end
