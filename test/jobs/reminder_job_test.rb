@@ -42,6 +42,16 @@ class ReminderJobTest < ActiveJob::TestCase
     end
   end
 
+  test "does not fire twice in the same window when the job runs again before the user logs a mood" do
+    travel_to time_at(11, 0) do
+      ReminderJob.perform_now
+
+      assert_no_enqueued_jobs only: Appkit::PushNotificationJob do
+        ReminderJob.perform_now
+      end
+    end
+  end
+
   test "does not fire for users without a push subscription" do
     @user.push_subscriptions.destroy_all
 

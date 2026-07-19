@@ -49,6 +49,12 @@ class User < ApplicationRecord
     state_of_minds.where(recorded_at: window).exists?
   end
 
+  # Whether a reminder was already sent within the given (timezone-aware) window —
+  # needed because the recurring job runs frequently, not once per window.
+  def reminded_within?(window)
+    last_reminded_at.present? && window.cover?(last_reminded_at)
+  end
+
   private
 
   def set_defaults

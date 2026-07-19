@@ -13,7 +13,7 @@ class ReminderJob < ApplicationJob
   def remind_if_due(user)
     window = user.current_reminder_window(WINDOWS)
     return unless window
-    return if user.recorded_within?(window)
+    return if user.recorded_within?(window) || user.reminded_within?(window)
 
     remind(user)
   end
@@ -21,6 +21,7 @@ class ReminderJob < ApplicationJob
   def remind(user)
     payload = reminder_payload(user.locale)
     user.push_subscriptions.each { |subscription| Appkit::PushNotificationJob.perform_later(subscription, payload) }
+    user.update!(last_reminded_at: Time.current)
   end
 
   def reminder_payload(locale)
