@@ -6,6 +6,13 @@
  * 0_settings → 1_base → 2_layout → 3_components → 4_themes
  */
 @import url("mvpa/mvpa.css");
+
+/* Local brand accent, referenced by appkit's login page styling below */
+@import url("4_themes/brand.css");
+
+/* appkit's login layout styling */
+@import url("appkit/login.css");
+
 @import url("2_modules/mood_slider.css");
 
 /*

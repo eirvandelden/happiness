@@ -75,6 +75,7 @@ group :test do
 end
 gem "bcrypt"
 gem "mvpa-css", github: "eirvandelden/mvpa.css"
+gem "appkit", github: "eirvandelden/appkit"
 
 group :development do
   gem "letter_opener"

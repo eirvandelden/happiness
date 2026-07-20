@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_secure_password
-  has_many :sessions, dependent: :destroy
+  include Appkit::Authenticatable
+  include Appkit::UserTheming
+
   has_many :state_of_minds, dependent: :destroy
 
   # Available locales
@@ -8,9 +9,6 @@ class User < ApplicationRecord
 
   # Enums
   enum :role, { user: 0, admin: 1 }, default: :user
-  enum :color_scheme, { system: 0, light: 1, dark: 2 }, default: :system
-  enum :light_theme, { "solunized-white": 0, "solunized-light": 1 }, default: :"solunized-light"
-  enum :dark_theme, { "solunized-black": 0, "solunized-dark": 1 }, default: :"solunized-dark"
 
   # Validations
   validates :name, presence: false
@@ -35,6 +33,26 @@ class User < ApplicationRecord
   # Return timezone as ActiveSupport::TimeZone object
   def time_zone
     ActiveSupport::TimeZone[timezone]
+  end
+
+  # The reminder window (out of the given windows) that covers this user's current
+  # local time, or nil if their local time is outside every window right now.
+  def current_reminder_window(windows)
+    now = time_zone.now
+    windows
+      .map { |sh, sm, eh, em| now.change(hour: sh, min: sm)..now.change(hour: eh, min: em) }
+      .find { |range| range.cover?(now) }
+  end
+
+  # Whether this user already recorded an entry within the given (timezone-aware) window.
+  def recorded_within?(window)
+    state_of_minds.where(recorded_at: window).exists?
+  end
+
+  # Whether a reminder was already sent within the given (timezone-aware) window —
+  # needed because the recurring job runs frequently, not once per window.
+  def reminded_within?(window)
+    last_reminded_at.present? && window.cover?(last_reminded_at)
   end
 
   private

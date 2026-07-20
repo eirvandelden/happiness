@@ -21,14 +21,7 @@ class I18nTest < ActionDispatch::IntegrationTest
   end
 
   test "all locales have required session keys" do
-    session_keys = %w[
-      sessions.sign_in
-      sessions.sign_out
-      sessions.new.title
-      sessions.new.email
-      sessions.new.password
-      sessions.new.submit
-    ]
+    session_keys = %w[sessions.sign_in sessions.sign_out]
 
     I18n.available_locales.each do |locale|
       assert_translations_present(locale, session_keys)
@@ -45,16 +38,21 @@ class I18nTest < ActionDispatch::IntegrationTest
   end
 
   test "notification landmark label uses current locale in application layout" do
+    # The appkit shared flashes partial only renders the landmark when a flash
+    # is present, so exercise a flash-producing action rather than just root.
     sign_in_as(users(:user))
     follow_redirect!
+    patch preferences_path, params: { user: { color_scheme: "light" } }
+    follow_redirect!
 
-    assert_select "section[aria-label=?]", I18n.t("notifications.label")
+    assert_select "section[aria-label=?]", I18n.t("appkit.flash.notifications")
   end
 
   test "notification landmark label uses current locale in admin layout" do
     sign_in_as(users(:admin))
-    get admin_root_path
+    patch admin_user_path(users(:user)), params: { user: { name: "Renamed" } }
+    follow_redirect!
 
-    assert_select "section[aria-label=?]", I18n.t("notifications.label")
+    assert_select "section[aria-label=?]", I18n.t("appkit.flash.notifications")
   end
 end

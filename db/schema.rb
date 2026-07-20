@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_16_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_18_230850) do
+  create_table "appkit_push_subscriptions", force: :cascade do |t|
+    t.string "auth_key"
+    t.datetime "created_at", null: false
+    t.string "endpoint", null: false
+    t.string "p256dh_key"
+    t.datetime "updated_at", null: false
+    t.string "user_agent"
+    t.integer "user_id", null: false
+    t.index [ "endpoint" ], name: "index_appkit_push_subscriptions_on_endpoint", unique: true
+    t.index [ "user_id" ], name: "index_appkit_push_subscriptions_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "ip_address"
-    t.string "token"
+    t.datetime "last_active_at"
+    t.string "token", null: false
     t.datetime "updated_at", null: false
     t.string "user_agent"
     t.integer "user_id", null: false
@@ -44,6 +57,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_16_120000) do
     t.integer "dark_theme", default: 1, null: false
     t.string "email", null: false
     t.datetime "last_login_at"
+    t.datetime "last_reminded_at"
     t.integer "light_theme", default: 1, null: false
     t.string "locale", default: "nl", null: false
     t.string "name"
@@ -54,6 +68,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_16_120000) do
     t.index [ "email" ], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "appkit_push_subscriptions", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "state_of_minds", "users"
 end

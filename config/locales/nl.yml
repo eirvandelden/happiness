@@ -72,8 +72,6 @@ nl:
         title: "👤 Gebruikersdetails"
       update:
         success: "✅ Gebruiker succesvol bijgewerkt"
-  authentication:
-    please_sign_in: Log in om verder te gaan
   color_schemes:
     dark: Donker
     light: Licht
@@ -103,14 +101,8 @@ nl:
     preferences: "⚙️ Voorkeuren"
   notifications:
     enable_reminders: Dagelijkse herinneringen inschakelen
-    label: Meldingen
     reminder_body: Hoe voel je je? Leg je geluk vast.
     reminder_title: Geluk
-    status:
-      blocked: Meldingen zijn geblokkeerd in je browserinstellingen
-      enabled: Dagelijkse herinneringen zijn ingeschakeld
-      failed: Herinneringen konden niet worden ingeschakeld. Installeer de app eerst op je beginscherm.
-      unsupported: Dagelijkse herinneringen worden niet ondersteund door deze browser
   preferences:
     edit:
       appearance: "🎨 Weergave"
@@ -128,15 +120,9 @@ nl:
       success: "✅ Voorkeuren succesvol bijgewerkt"
   sessions:
     create:
-      failure: "❌ Ongeldige e-mail of wachtwoord"
       success: "✅ Succesvol ingelogd"
     destroy:
       success: "👋 Succesvol uitgelogd"
-    new:
-      email: "📧 E-mail"
-      password: "🔒 Wachtwoord"
-      submit: Inloggen
-      title: "🔐 Inloggen"
     sign_in: "🔑 Inloggen"
     sign_out: "👋 Uitloggen"
   state_of_minds:

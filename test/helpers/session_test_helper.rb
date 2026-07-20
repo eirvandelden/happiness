@@ -10,7 +10,7 @@ module SessionTestHelper
   #   assert_response :success
   def sign_in_as(user)
     post session_path, params: {
-      email: user.email,
+      email_address: user.email,
       password: "password"
     }
   end
@@ -58,8 +58,13 @@ module SessionTestHelper
   #   assert_text "Dashboard"
   def system_sign_in_as(user)
     visit new_session_path
-    fill_in I18n.t("sessions.new.email"), with: user.email
-    fill_in I18n.t("sessions.new.password"), with: "password"
-    click_button I18n.t("sessions.new.submit")
+    fill_in I18n.t("appkit.sessions.new.email_placeholder"), with: user.email
+    fill_in I18n.t("appkit.sessions.new.password_placeholder"), with: "password"
+    click_button I18n.t("appkit.sessions.new.submit")
+
+    # Login form submits are Turbo-driven (async), so click_button returns
+    # before the session cookie is set - wait for the login layout to
+    # disappear before letting the caller navigate anywhere else.
+    assert_no_selector "body[data-appkit-login]"
   end
 end

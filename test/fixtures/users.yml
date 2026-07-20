@@ -11,3 +11,11 @@ admin:
   password_digest: <%= BCrypt::Password.create("password") %>
   role: admin
   last_login_at: <%= 1.hour.ago %>
+
+tokyo_user:
+  name: Tokyo User
+  email: tokyo_user@example.com
+  password_digest: <%= BCrypt::Password.create("password") %>
+  role: user
+  timezone: Tokyo
+  last_login_at: <%= 2.hours.ago %>

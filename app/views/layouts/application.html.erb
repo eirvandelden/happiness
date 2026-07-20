@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>" <%= tag.attributes(theme_attributes) %>>
+<html lang="<%= I18n.locale %>" data-controller="theme" <%= tag.attributes(theme_attributes) %>>
   <head>
     <title><%= content_for(:title) || Rails.application.class.module_parent_name %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="view-transition" content="same-origin">
     <meta name="color-scheme" content="light dark">
+    <meta name="turbo-cache-control" content="no-cache">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= yield :head %>
 
-    <link rel="manifest" href="<%= pwa_manifest_path(format: :json) %>">
+    <%= render "appkit/shared/pwa_meta" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -18,29 +19,22 @@
     <header>
       <nav>
         <ul>
-          <li><%= link_to_unless_current t("nav.home"), root_path %></li>
-          <% if authenticated? %>
-            <li><%= link_to_unless_current t("nav.history"), state_of_minds_path %></li>
-            <li><%= link_to_unless_current t("nav.preferences"), edit_preferences_path %></li>
+          <li><%= nav_link_to t("nav.home"), root_path %></li>
+          <% if signed_in? %>
+            <li><%= nav_link_to t("nav.history"), state_of_minds_path %></li>
+            <li><%= nav_link_to t("nav.preferences"), edit_preferences_path %></li>
             <% if Current.user.admin? %>
-              <li><%= link_to_unless_current t("nav.admin"), admin_root_path %></li>
+              <li><%= nav_link_to t("nav.admin"), admin_root_path %></li>
             <% end %>
             <li><%= button_to t("sessions.sign_out"), session_path, method: :delete %></li>
           <% else %>
-            <li><%= link_to_unless_current t("sessions.sign_in"), new_session_path %></li>
+            <li><%= nav_link_to t("sessions.sign_in"), new_session_path %></li>
           <% end %>
         </ul>
       </nav>
     </header>
 
-    <section aria-label="<%= t("notifications.label") %>" data-mvpa-flashes>
-      <% if flash[:notice] %>
-        <aside role="status"><%= flash[:notice] %></aside>
-      <% end %>
-      <% if flash[:alert] %>
-        <aside role="alert"><%= flash[:alert] %></aside>
-      <% end %>
-    </section>
+    <%= render "appkit/shared/flashes" %>
 
     <main>
       <%= yield %>
@@ -49,10 +43,5 @@
     <footer>
       <p><%= t("footer.copyright", year: Date.current.year, app_name: Rails.application.class.module_parent_name) %></p>
     </footer>
-    <script nonce="<%= content_security_policy_nonce %>">
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js', { scope: '/' });
-      }
-    </script>
   </body>
 </html>
