@@ -67,6 +67,11 @@
       <%= form.text_area :note %>
     </div>
 
+    <div>
+      <%= form.label :recorded_at, t(".recorded_at_label") %>
+      <%= form.datetime_local_field :recorded_at %>
+    </div>
+
     <%= form.submit t(".submit") %>
   <% end %>
 </article>
