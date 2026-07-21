@@ -77,6 +77,14 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_equal "Just a test note", StateOfMind.last.note
   end
 
+  test "user-supplied recorded_at is preserved" do
+    past = 2.hours.ago.change(usec: 0)
+    post state_of_minds_path, params: {
+      state_of_mind: { mood_score: 3, entry_type: "momentary", recorded_at: past.iso8601 }
+    }
+    assert_equal past, StateOfMind.last.recorded_at
+  end
+
   test "index shows empty state when no entries" do
     StateOfMind.destroy_all
     get state_of_minds_path

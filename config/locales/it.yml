@@ -168,6 +168,7 @@ it:
       emotions_label: Cosa lo descrive meglio?
       mood_label: Umore generale
       note_label: Aggiungi una nota (opzionale)
+      recorded_at_label: Orario (lascia vuoto per adesso)
       submit: Salva
       title: Come ti senti?
   themes:

@@ -168,6 +168,7 @@ en:
       emotions_label: What best describes it?
       mood_label: Overall mood
       note_label: Add a note (optional)
+      recorded_at_label: Time (leave blank for now)
       submit: Save
       title: How are you feeling?
   themes:

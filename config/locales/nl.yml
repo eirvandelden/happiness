@@ -168,6 +168,7 @@ nl:
       emotions_label: Wat omschrijft het het beste?
       mood_label: Algemene stemming
       note_label: Voeg een notitie toe (optioneel)
+      recorded_at_label: Tijdstip (leeg laten voor nu)
       submit: Opslaan
       title: Hoe voel je je?
   themes:
