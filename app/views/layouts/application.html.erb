@@ -16,6 +16,7 @@
   </head>
 
   <body>
+    <%= render "appkit/shared/skip_link" %>
     <header>
       <nav>
         <ul>
@@ -36,7 +37,7 @@
 
     <%= render "appkit/shared/flashes" %>
 
-    <main>
+    <main id="main">
       <%= yield %>
     </main>
 
