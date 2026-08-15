@@ -15,6 +15,7 @@
   </head>
 
   <body>
+    <%= render "appkit/shared/skip_link" %>
     <header>
       <nav>
         <%= link_to t("admin.nav.dashboard"), admin_root_path %>
@@ -26,7 +27,7 @@
 
     <%= render "appkit/shared/flashes" %>
 
-    <main>
+    <main id="main">
       <%= yield %>
     </main>
   </body>
