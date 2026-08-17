@@ -6,7 +6,8 @@ class ApplicationJob < ActiveJob::Base
   # discard_on ActiveJob::DeserializationError
 
   rescue_from(StandardError) do |error|
-    ExceptionNotifier.notify_exception(error, data: { job: self.class.name })
+    named_error = error.exception("#{error.message} (job: #{self.class.name})")
+    ExceptionNotifier.notify_exception(named_error)
     raise error
   end
 end
