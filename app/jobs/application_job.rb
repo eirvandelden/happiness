@@ -4,4 +4,9 @@ class ApplicationJob < ActiveJob::Base
 
   # Most jobs are safe to ignore if the underlying records are no longer available
   # discard_on ActiveJob::DeserializationError
+
+  rescue_from(StandardError) do |error|
+    ExceptionNotifier.notify_exception(error, data: { job: self.class.name })
+    raise error
+  end
 end
