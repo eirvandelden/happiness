@@ -19,8 +19,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_18_230850) do
     t.datetime "updated_at", null: false
     t.string "user_agent"
     t.integer "user_id", null: false
-    t.index [ "endpoint" ], name: "index_appkit_push_subscriptions_on_endpoint", unique: true
-    t.index [ "user_id" ], name: "index_appkit_push_subscriptions_on_user_id"
+    t.index ["endpoint"], name: "index_appkit_push_subscriptions_on_endpoint", unique: true
+    t.index ["user_id"], name: "index_appkit_push_subscriptions_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -31,8 +31,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_18_230850) do
     t.datetime "updated_at", null: false
     t.string "user_agent"
     t.integer "user_id", null: false
-    t.index [ "token" ], name: "index_sessions_on_token", unique: true
-    t.index [ "user_id" ], name: "index_sessions_on_user_id"
+    t.index ["token"], name: "index_sessions_on_token", unique: true
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "state_of_minds", force: :cascade do |t|
@@ -45,8 +45,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_18_230850) do
     t.datetime "recorded_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
-    t.index [ "entry_type" ], name: "index_state_of_minds_on_entry_type"
-    t.index [ "user_id" ], name: "index_state_of_minds_on_user_id"
+    t.index ["entry_type"], name: "index_state_of_minds_on_entry_type"
+    t.index ["user_id"], name: "index_state_of_minds_on_user_id"
     t.check_constraint "entry_type IN ('momentary', 'daily')", name: "check_state_of_minds_entry_type_values"
     t.check_constraint "mood_score BETWEEN 1 AND 5", name: "check_state_of_minds_mood_score_range"
   end
@@ -65,7 +65,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_18_230850) do
     t.integer "role", default: 0, null: false
     t.string "timezone", default: "UTC", null: false
     t.datetime "updated_at", null: false
-    t.index [ "email" ], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "appkit_push_subscriptions", "users"
