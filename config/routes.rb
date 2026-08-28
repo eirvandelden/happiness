@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   resources :state_of_minds, only: [ :index, :new, :create ]
   root "state_of_minds#new"
 
+  # The Android app fetches its navigation rules from here on launch, so they can
+  # change without shipping a new build.
+  get "configurations/android_v1", to: "navigation_rules#show", as: :android_navigation_rules
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
