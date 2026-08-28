@@ -48,11 +48,14 @@
     <%= form.submit t(".submit") %>
   <% end %>
 
-  <fieldset data-controller="push">
-    <legend><%= t("preferences.edit.reminders") %></legend>
+  <%# Reminders rely on the browser's own notification permission, which the app's web view does not offer. %>
+  <% unless hotwire_native_app? %>
+    <fieldset data-controller="push">
+      <legend><%= t("preferences.edit.reminders") %></legend>
 
-    <button type="button" data-action="push#subscribe">
-      <%= t("notifications.enable_reminders") %>
-    </button>
-  </fieldset>
+      <button type="button" data-action="push#subscribe">
+        <%= t("notifications.enable_reminders") %>
+      </button>
+    </fieldset>
+  <% end %>
 </article>
