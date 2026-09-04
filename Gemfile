@@ -51,13 +51,9 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
-  # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem "rubocop-rails-omakase", require: false
+  # The rules shared by every personal Ruby project
+  gem "rubocop-eirvandelden", github: "eirvandelden/rubocop-eirvandelden", require: false
   gem "rubocop-capybara", require: false
-  gem "rubocop-minitest", require: false
-  gem "rubocop-obsession", require: false
-  gem "rubocop-packaging", require: false
-  gem "rubocop-rspec", require: false
   gem "i18n-tasks"
   gem "faker"
   gem "dotenv-rails"

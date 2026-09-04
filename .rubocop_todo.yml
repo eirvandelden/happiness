@@ -1,0 +1,7 @@
+---
+# ReminderJob is scheduled every fifteen minutes in config/recurring.yml. Renaming it would
+# stop any job already enqueued under the old name from deserializing at deploy, which is not
+# worth a naming preference. Jobs added from here on are still held to the rule.
+Obsession/Rails/ServiceName:
+  Exclude:
+    - "app/jobs/reminder_job.rb"
