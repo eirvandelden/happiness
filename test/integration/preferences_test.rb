@@ -42,9 +42,21 @@ class PreferencesTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "settings page hides the reminders control inside the app" do
+    get edit_preferences_path, headers: { "HTTP_USER_AGENT" => ANDROID_APP_USER_AGENT }
+
+    assert_response :success
+    assert_select "[data-controller=push]", count: 0
+  end
+
   test "reminders control is not rendered in the global layout" do
     get root_path
 
     assert_select "[data-controller=push]", count: 0
   end
+
+  private
+    # What Hotwire Native Android puts in front of the web view's own user agent.
+    ANDROID_APP_USER_AGENT = "Hotwire Native Android; Turbo Native Android; " \
+      "Mozilla/5.0 (Linux; Android 16; wv) Chrome/140.0.7339.207 Mobile Safari/537.36"
 end
