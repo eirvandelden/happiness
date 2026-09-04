@@ -28,7 +28,9 @@ pre-commit:
       tags: ruby linter
       glob: "*.{rb}"
       exclude: "application.rb|routes.rb|schema.rb"
-      run: rubocop -a {staged_files} --parallel
+      # Git exports GIT_DIR to its hooks, which sends bundler's lookup of the git-sourced gems
+      # at the repository being committed to instead of their own clones.
+      run: env -u GIT_DIR bin/rubocop -a {staged_files} --parallel
       stage_fixed: true
     ruby-syntax:
       tags:
@@ -127,7 +129,7 @@ pre-push:
     rubocop:
       tags: linter
       glob: "*.rb"
-      run: rubocop --force-exclusion {staged_files}
+      run: env -u GIT_DIR bin/rubocop --force-exclusion {staged_files}
     minitest:
       tags:
         - ruby
