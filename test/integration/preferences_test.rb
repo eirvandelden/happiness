@@ -1,6 +1,10 @@
 require "test_helper"
 
 class PreferencesTest < ActionDispatch::IntegrationTest
+  # The marker Hotwire Native puts in front of the web view's own user agent,
+  # on Android and on iOS alike. It is the whole of what makes a request the app.
+  APP_USER_AGENT = "Hotwire Native"
+
   setup do
     @user = users(:user)
     sign_in_as(@user)
@@ -43,7 +47,7 @@ class PreferencesTest < ActionDispatch::IntegrationTest
   end
 
   test "settings page hides the reminders control inside the app" do
-    get edit_preferences_path, headers: { "HTTP_USER_AGENT" => ANDROID_APP_USER_AGENT }
+    get edit_preferences_path, headers: { "User-Agent" => APP_USER_AGENT }
 
     assert_response :success
     assert_select "[data-controller=push]", count: 0
@@ -54,9 +58,4 @@ class PreferencesTest < ActionDispatch::IntegrationTest
 
     assert_select "[data-controller=push]", count: 0
   end
-
-  private
-    # What Hotwire Native Android puts in front of the web view's own user agent.
-    ANDROID_APP_USER_AGENT = "Hotwire Native Android; Turbo Native Android; " \
-      "Mozilla/5.0 (Linux; Android 16; wv) Chrome/140.0.7339.207 Mobile Safari/537.36"
 end
