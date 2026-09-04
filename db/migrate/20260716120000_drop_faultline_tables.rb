@@ -94,6 +94,7 @@ class DropFaultlineTables < ActiveRecord::Migration[8.1]
 
     add_foreign_key :faultline_error_contexts, :faultline_error_occurrences, column: :error_occurrence_id
     add_foreign_key :faultline_error_occurrences, :faultline_error_groups, column: :error_group_id
-    add_foreign_key :faultline_request_profiles, :faultline_request_traces, column: :request_trace_id, on_delete: :cascade
+    add_foreign_key :faultline_request_profiles, :faultline_request_traces, column: :request_trace_id,
+on_delete: :cascade
   end
 end

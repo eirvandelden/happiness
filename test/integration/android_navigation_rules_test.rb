@@ -20,9 +20,10 @@ class AndroidNavigationRulesTest < ActionDispatch::IntegrationTest
     every_path = navigation_rules["rules"].sole
 
     assert_equal [ ".*" ], every_path["patterns"]
-    assert_equal "hotwire://fragment/web", every_path.dig("properties", "uri")
-    assert_equal "default", every_path.dig("properties", "context")
-    assert_equal true, every_path.dig("properties", "pull_to_refresh_enabled")
+    assert_equal({ "context" => "default",
+                   "uri" => "hotwire://fragment/web",
+                   "pull_to_refresh_enabled" => true },
+                 every_path["properties"])
   end
 
   private

@@ -44,6 +44,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
     assert_match I18n.t("appkit.sessions.rejection"), response.body
     get root_path
+
     assert_redirected_to new_session_path
   end
 end

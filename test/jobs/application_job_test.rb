@@ -23,6 +23,7 @@ class ApplicationJobTest < ActiveSupport::TestCase
     end
 
     summary_line = notification.lines.first
+
     assert_includes summary_line, "FakeFailingJob"
   end
 

@@ -4,7 +4,7 @@ class SessionTest < ActiveSupport::TestCase
   test "a token is generated automatically via Appkit::SessionBehavior's has_secure_token" do
     session = Session.create!(user: users(:user))
 
-    assert session.token.present?
+    assert_predicate session.token, :present?
   end
 
   test "tokens are unique, replacing the app's former SecureRandom.base58 callback" do

@@ -5,16 +5,20 @@ class AuthTest < ActionDispatch::IntegrationTest
     sign_in_as(users(:admin))
 
     expires = session_cookie_expires
+
     assert expires, "Expected Set-Cookie to include an expires= date"
-    assert expires > 6.months.from_now, "Expected cookie to expire more than 10 years from now, got #{expires}"
+    assert_operator expires, :>, 6.months.from_now,
+"Expected cookie to expire more than 10 years from now, got #{expires}"
   end
 
   test "user login sets a far-future session cookie expiry" do
     sign_in_as(users(:user))
 
     expires = session_cookie_expires
+
     assert expires, "Expected Set-Cookie to include an expires= date"
-    assert expires > 6.months.from_now, "Expected cookie to expire more than 10 years from now, got #{expires}"
+    assert_operator expires, :>, 6.months.from_now,
+"Expected cookie to expire more than 10 years from now, got #{expires}"
   end
 
   test "resuming a session renews the cookie expiration for admin" do
@@ -22,11 +26,14 @@ class AuthTest < ActionDispatch::IntegrationTest
 
     travel 1.day do
       get root_path
+
       assert_response :success
 
       expires = session_cookie_expires
+
       assert expires, "Expected Set-Cookie to include an expires= date on subsequent request"
-      assert expires > 6.months.from_now, "Expected renewed cookie to expire more than 10 years from now, got #{expires}"
+      assert_operator expires, :>, 6.months.from_now,
+"Expected renewed cookie to expire more than 10 years from now, got #{expires}"
     end
   end
 
@@ -35,11 +42,14 @@ class AuthTest < ActionDispatch::IntegrationTest
 
     travel 1.day do
       get root_path
+
       assert_response :success
 
       expires = session_cookie_expires
+
       assert expires, "Expected Set-Cookie to include an expires= date on subsequent request"
-      assert expires > 6.months.from_now, "Expected renewed cookie to expire more than 10 years from now, got #{expires}"
+      assert_operator expires, :>, 6.months.from_now,
+"Expected renewed cookie to expire more than 10 years from now, got #{expires}"
     end
   end
 

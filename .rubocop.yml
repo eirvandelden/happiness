@@ -1,85 +1,11 @@
+---
+# The rules shared by every personal Ruby project. This is a Rails app whose system tests
+# drive a browser, so it stacks those two layers on top.
 inherit_gem:
-  rubocop-rails-omakase: rubocop.yml
+  rubocop-eirvandelden:
+    - config/default.yml
+    - config/rails.yml
+    - config/capybara.yml
 
-plugins:
-  - rubocop-capybara
-  - rubocop-minitest
-  - rubocop-obsession
-  - rubocop-packaging
-  - rubocop-performance
-  - rubocop-rails
-  - rubocop-rspec
-
-AllCops:
-  # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
-  # to ignore them, so only the ones explicitly set in this file are enabled.
-  DisabledByDefault: true
-  SuggestExtensions: true
-
-  Exclude:
-    - '**/app/assets/**/*'
-    - '**/db/**/*schema.rb'
-    - '**/db/schema.rb'
-    - '**/log/**/*'
-    - '**/node_modules/**/*'
-    - '**/public/**/*'
-    - '**/storage/**/*'
-    - '**/templates/**/*'
-    - '**/tmp/**/*'
-    - '**/vendor/**/*'
-    - 'actionmailbox/test/dummy/**/*'
-    - 'actionpack/lib/action_dispatch/journey/parser.rb'
-    - 'actiontext/test/dummy/**/*'
-    - 'bin/**/*'
-
-  NewCops: enable ## Cops that need decisions are enabled by default
-# Default Cops
-Metrics/BlockLength:
-  Exclude:
-    - spec/**/*_spec.rb
-    - db/schema.rb
-
-Style/FrozenStringLiteralComment:
-  EnforcedStyle: never
-
-# Cops from Extensions
-Minitest/UnreachableAssertion:
-  Enabled: true
-
-Performance/BindCall:
-  Enabled: true
-Performance/DeletePrefix:
-  Enabled: true
-Performance/DeleteSuffix:
-  Enabled: true
-Performance/EndWith:
-  Enabled: true
-Performance/FlatMap:
-  Enabled: true
-Performance/MapCompact:
-  Enabled: true
-Performance/RedundantMerge:
-  Enabled: true
-Performance/RegexpMatch:
-  Enabled: true
-Performance/ReverseEach:
-  Enabled: true
-Performance/SelectMap:
-  Enabled: true
-Performance/StartWith:
-  Enabled: true
-Performance/StringReplacement:
-  Enabled: true
-Performance/UnfreezeString:
-  Enabled: true
-
-Rails/AssertNot: # Prefer assert_not over assert !
-  Include:
-    - '**/test/**/*'
-Rails/RefuteMethods: # Prefer assert_not_x over refute_x
-  Include:
-    - '**/test/**/*'
-Rails/IndexBy:
-  Enabled: true
-Rails/IndexWith:
-  Enabled: true
+inherit_from:
+  - .rubocop_todo.yml

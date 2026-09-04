@@ -32,7 +32,7 @@ class I18nTest < ActionDispatch::IntegrationTest
     I18n.available_locales.each do |locale|
       I18n.with_locale(locale) do
         assert_equal locale, I18n.locale
-        assert I18n.t("nav.home").present?
+        assert_predicate I18n.t("nav.home"), :present?
       end
     end
   end

@@ -1,7 +1,8 @@
 class StateOfMind < ApplicationRecord
   belongs_to :user
 
-  EMOTIONS = %w[happy hopeful grateful excited content calm angry frustrated sad anxious drained disgusted indifferent].freeze
+  EMOTIONS = %w[happy hopeful grateful excited content calm angry frustrated sad anxious drained disgusted
+indifferent].freeze
   CONTEXTS = %w[work relationships family health sleep exercise current_events weather other].freeze
   ENTRY_TYPES = %w[momentary daily].freeze
 
@@ -18,6 +19,18 @@ class StateOfMind < ApplicationRecord
 
   private
 
+  def emotions_are_known
+    errors.add(:emotions, :inclusion) unless known_values?(emotions, EMOTIONS)
+  end
+
+  def known_values?(values, allowed_values)
+    values.is_a?(Array) && (values - allowed_values).empty?
+  end
+
+  def contexts_are_known
+    errors.add(:contexts, :inclusion) unless known_values?(contexts, CONTEXTS)
+  end
+
   def normalize_collections
     self.emotions = normalize_collection(emotions)
     self.contexts = normalize_collection(contexts)
@@ -33,17 +46,5 @@ class StateOfMind < ApplicationRecord
 
   def set_recorded_at
     self.recorded_at ||= Time.current
-  end
-
-  def emotions_are_known
-    errors.add(:emotions, :inclusion) unless known_values?(emotions, EMOTIONS)
-  end
-
-  def contexts_are_known
-    errors.add(:contexts, :inclusion) unless known_values?(contexts, CONTEXTS)
-  end
-
-  def known_values?(values, allowed_values)
-    values.is_a?(Array) && (values - allowed_values).empty?
   end
 end
