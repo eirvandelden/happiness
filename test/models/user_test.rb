@@ -12,6 +12,6 @@ class UserTest < ActiveSupport::TestCase
   test "appkit first_run creates an admin, matching Happiness's role enum (not the engine's :administrator)" do
     user = Appkit::FirstRun.create!(email: "first-admin-#{SecureRandom.hex(4)}@example.com", password: "password")
 
-    assert user.admin?
+    assert_predicate user, :admin?
   end
 end

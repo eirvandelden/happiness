@@ -46,6 +46,7 @@ class Admin::UsersTest < ActionDispatch::IntegrationTest
     end
 
     created_user = User.find_by!(email: "created@example.com")
+
     assert_redirected_to admin_user_path(created_user)
   end
 
@@ -89,12 +90,15 @@ class Admin::UsersTest < ActionDispatch::IntegrationTest
     sign_in_as(@user)
 
     get admin_users_path
+
     assert_redirected_to root_path
 
     get admin_user_path(@admin)
+
     assert_redirected_to root_path
 
     get new_admin_user_path
+
     assert_redirected_to root_path
 
     post admin_users_path, params: {
@@ -106,15 +110,19 @@ class Admin::UsersTest < ActionDispatch::IntegrationTest
         password_confirmation: "password"
       }
     }
+
     assert_redirected_to root_path
 
     get edit_admin_user_path(@admin)
+
     assert_redirected_to root_path
 
     patch admin_user_path(@admin), params: { user: { name: "Should Not Work" } }
+
     assert_redirected_to root_path
 
     delete admin_user_path(@admin)
+
     assert_redirected_to root_path
   end
 end

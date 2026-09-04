@@ -9,6 +9,7 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
 
   test "user can visit new state of mind form" do
     get new_state_of_mind_path
+
     assert_response :success
     assert_select "form"
     assert_select "input[type=range]"   # mood score slider
@@ -73,6 +74,7 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
         note: "Just a test note"
       }
     }
+
     assert_redirected_to state_of_minds_path
     assert_equal "Just a test note", StateOfMind.last.note
   end
@@ -82,12 +84,14 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     post state_of_minds_path, params: {
       state_of_mind: { mood_score: 3, entry_type: "momentary", recorded_at: past.iso8601 }
     }
+
     assert_equal past, StateOfMind.last.recorded_at
   end
 
   test "index shows empty state when no entries" do
     StateOfMind.destroy_all
     get state_of_minds_path
+
     assert_response :success
     assert_match I18n.t("state_of_minds.index.empty"), response.body
     assert_select "a[href='#{new_state_of_mind_path}']"
@@ -95,6 +99,7 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
 
   test "index shows entry after submission" do
     get state_of_minds_path
+
     assert_response :success
     # fixture entry_one for this user exists
     assert_match "Good day", response.body
@@ -102,12 +107,14 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
 
   test "index shows mood trend SVG chart when entries exist" do
     get state_of_minds_path
+
     assert_response :success
     assert_select "svg", minimum: 1
   end
 
   test "index shows emotion frequency SVG chart when entries exist" do
     get state_of_minds_path
+
     assert_response :success
     assert_select "svg", minimum: 2
   end

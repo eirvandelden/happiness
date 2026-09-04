@@ -4,7 +4,8 @@ module I18nTestHelper
     I18n.with_locale(locale) do
       keys.each do |key|
         translation = I18n.t(key, raise: true)
-        assert translation.present?, "Missing translation for #{locale}.#{key}"
+
+        assert_predicate translation, :present?, "Missing translation for #{locale}.#{key}"
       rescue I18n::MissingTranslationData
         flunk "Missing translation for #{locale}.#{key}"
       end
@@ -17,7 +18,7 @@ module I18nTestHelper
     i18n = I18n::Tasks::BaseTask.new
     missing = i18n.missing_keys
 
-    assert missing.empty?, "Missing translations:\n#{missing.inspect}"
+    assert_empty missing, "Missing translations:\n#{missing.inspect}"
   end
 
   # Test that no translations are unused
@@ -26,6 +27,6 @@ module I18nTestHelper
     i18n = I18n::Tasks::BaseTask.new
     unused = i18n.unused_keys
 
-    assert unused.empty?, "Unused translations:\n#{unused.inspect}"
+    assert_empty unused, "Unused translations:\n#{unused.inspect}"
   end
 end
