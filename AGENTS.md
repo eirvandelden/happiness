@@ -18,8 +18,8 @@ Admins (`/admin`) get a dashboard (user counts, recent logins) and full CRUD ove
 
 - Setup: `bin/setup` (installs gems, prepares the SQLite database, clears logs/tmp)
 - Run: `bin/dev` (Procfile.dev) or `bin/rails server`
-- Test: `bin/rails test` (Minitest, includes system tests); JS unit tests: `yarn test`
-- Lint: `bin/rubocop`; `yarn eslint .`; `yarn stylelint`; `bundle exec herb lint` for `.erb`/`.rhtml`
+- Test: `bin/rails test` (Minitest, includes system tests); JS unit tests: `npm test`
+- Lint: `bin/rubocop`; `npx eslint .`; `npm run stylelint`; `bundle exec herb lint` for `.erb`/`.rhtml`
 
 ## Gotchas
 
