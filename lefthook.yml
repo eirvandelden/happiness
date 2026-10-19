@@ -4,7 +4,7 @@ pre-commit:
     stylelint:
       tags: css linter
       glob: "*.{css,scss}"
-      run: yarn stylelint {staged_files}
+      run: npx --no stylelint {staged_files}
     browserslist:
       tags: css browserslist
       glob: ".browserslistrc"
@@ -20,7 +20,7 @@ pre-commit:
     eslint:
       tags: javascript linter
       glob: "*.{js,ts,jsx,tsx}"
-      run: yarn eslint {staged_files}
+      run: npx --no eslint {staged_files}
     rubocop:
       tags: ruby linter
       glob: "*.{rb}"
@@ -88,7 +88,7 @@ pre-push:
         If you're in a hurry to push, use the `--no-verify` git flag.
         If you need to 🚩 ignore dependencies in the longer-term 🚩 see https://rubydoc.info/gems/bundler-audit/frames#configuration-file
     stylelint:
-      run: yarn stylelint {push_files}
+      run: npx --no stylelint {push_files}
       tags: css linter
       glob:
         - "*.{css,scss}"
@@ -107,7 +107,7 @@ pre-push:
     eslint:
       tags: linter
       glob: "*.{js,ts,jsx,tsx}"
-      run: yarn eslint {staged_files}
+      run: npx --no eslint {staged_files}
     javascript-tests:
       tags:
         - javascript
@@ -115,7 +115,7 @@ pre-push:
       glob:
         - "app/javascript/**/*.js"
         - "test/javascript/**/*.js"
-      run: yarn test
+      run: npm test
     rubocop:
       tags: linter
       glob: "*.rb"
@@ -197,8 +197,8 @@ post-merge:
       env:
         LEFTHOOK_QUIET: execution_info,meta,skips,summary
     client-dependencies:
-      glob: "{yarn.lock,package.json}"
-      run: yarn install
+      glob: "{package-lock.json,package.json}"
+      run: npm install
 
 # custom migrations command for running rails migrations
 migrations:
