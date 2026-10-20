@@ -1,52 +1,58 @@
-# Spec: Clear js-yaml advisory and report npm advisories
+# Spec: Clear npm security advisories and report new ones
 
-From `intent.md` (2026-10-01). Status: accepted.
+From `intent.md` (2026-10-20). Status: accepted.
 
 ## Flagged concerns
 
-- The intent names only `js-yaml`, but `yarn audit` also reports two high advisories on `brace-expansion` (GHSA-qhr7-859c-m2p7, GHSA-6j4f-fj2g-mc7p) through `eslint > minimatch`. A blocking gate would fail on them at once. Etienne decided to fix them in this change, so the gate lands green.
-- Playbook rule 13 requires approval to edit `.github/workflows/ci.yml`. Etienne chose a new job there; accepting this spec is that approval.
-- Playbook rule 11: the check adds no dependency. It uses `yarn audit`, which ships with the installed Yarn 1.22.22.
+- The earlier accepted spec (commit 09bcdf6, 2026-10-01) assumed Yarn. #132 replaced Yarn with npm, so this spec replaces it.
+- `braces` 3.0.3 has a high advisory (GHSA-vfj7-8cjw-p6xm) with no fixed version. A check that blocks on high would fail on every push that changes `package-lock.json`, and in CI on every run. Etienne chose to block only on critical. The tradeoff: a new high advisory with a fix also does not block. It shows in the printed report and in Dependabot.
+- Playbook rule 13 requires approval to edit `.github/workflows/ci.yml`. Accepting this spec is that approval for the one new job described below.
+- Playbook rule 11: no dependency is added. `npm audit` comes with npm 11.12.1.
 
 ## Requirements
 
-1. `yarn.lock` resolves `js-yaml` to 4.3.2 or later.
-2. `yarn.lock` resolves `brace-expansion` to a version that clears both advisories (5.0.11 or later where the 5.x line is used).
-3. Only the lockfile entries needed for 1 and 2 change. No `yarn upgrade` of all packages. `package.json` ranges change only if a targeted update cannot work without it.
-4. Stylelint and ESLint still lint the repository after the update.
-5. A script, `bin/npm-audit`, runs `yarn audit --level high` and exits non-zero when the audit finds a high or critical advisory.
-6. The script exits zero and still prints the report when only low or moderate advisories exist.
-7. The lefthook pre-push hook runs the script when `yarn.lock` or `package.json` is in the push, and a failure blocks the push.
-8. CI runs the script as a new job in `.github/workflows/ci.yml`, and a failure fails the workflow.
+1. `package-lock.json` resolves these packages to at least the fixed version:
+   - `js-yaml` 4.3.2
+   - `source-map-js` 1.2.2
+   - `brace-expansion` 5.0.12
+   - `postcss-selector-parser` 7.1.6
+   - `colord` 2.9.4
+   - `fast-uri` 3.1.8
+2. Only the lockfile entries that requirement 1 needs change. No `npm update` of all packages, no `npm audit fix --force`. `package.json` changes only if a parent's range blocks a fixed version, and then through an `overrides` entry.
+3. `npm run stylelint` and `npx eslint .` still lint the repository after the update.
+4. The lefthook pre-push hook runs `npm audit --audit-level=critical` when `package.json` or `package-lock.json` is in the push. A non-zero exit blocks the push.
+5. CI runs `npm audit --audit-level=critical` in a new job in `.github/workflows/ci.yml`. A non-zero exit fails the workflow.
+6. In both places the full audit report prints, also when it does not block.
 
 ## Design decisions
 
-- `yarn audit --level high` still sets the moderate bit in its exit code (observed exit 12 with 4 moderate and 5 high). The script therefore masks the exit code to the high (8) and critical (16) bits instead of passing it through.
-- The script lives in `bin/` beside `bin/bundler-audit`, so hook and CI call one command.
-- The pre-push hook uses the same glob style as the existing `bundle-audit` command, with `fail_text` in the same format and the `--no-verify` hint.
-- The CI job mirrors the existing `i18n` job: `ubuntu-latest`, `actions/checkout` at the pinned version already in the file, then Node and `yarn install --frozen-lockfile`, then `bin/npm-audit`.
-- Fix versions with `yarn upgrade <package>` scoped to one package, or a `resolutions` entry only if the parent range blocks the patched version. The plan decides which.
+- Call `npm audit --audit-level=critical` directly from the hook and from CI. No wrapper script: npm sets a non-zero exit only at or above the given level, and prints the full report either way (verified: exit 0 today with 8 high and 3 moderate).
+- The pre-push hook follows the existing `bundle-audit` command: `glob` on the two npm files, a `security` tag, and a `fail_text` with the `--no-verify` hint.
+- The CI job follows the existing `i18n` job and the shared appkit workflow: `ubuntu-latest`, `actions/checkout@v7.0.1`, `actions/setup-node@v7` with Node 24, then the audit. `npm audit` reads only `package-lock.json`, so the job does not need `npm ci`.
+- Fix the versions with a targeted `npm update <package>` per package, or an `overrides` entry when the parent range blocks the fix. The plan decides per package.
 
 ## Integration points
 
-- `yarn.lock` (and possibly `package.json`).
-- `bin/npm-audit` (new).
+- `package-lock.json` (and `package.json` only for `overrides`).
 - `lefthook.yml`, `pre-push` section.
 - `.github/workflows/ci.yml`.
-- `stylelint`, `eslint`: must still run.
-- PR #120 (Rails 8.1.4) rebases on this change after it merges.
+- stylelint and ESLint, which must still run.
+- Dependabot alerts #24, #27, #30, #31, which close once this merges.
+- PR #120 (Rails 8.1.4), which rebases on this change after it merges.
 
 ## Acceptance criteria
 
-- `yarn.lock` lists `js-yaml` at 4.3.2 or later.
-- `yarn.lock` lists no `brace-expansion` version inside either vulnerable range.
-- `yarn stylelint` and `yarn eslint .` still pass on the repository after the update.
-- `bin/npm-audit` on the updated tree exits zero.
-- `bin/npm-audit` exits non-zero when the audit reports a high advisory, shown with a lockfile that pins `js-yaml` 4.3.1.
-- `bin/npm-audit` exits non-zero when the audit reports a critical advisory.
-- `bin/npm-audit` exits zero and prints the report when the audit reports only moderate advisories.
-- Pushing a branch that changes `yarn.lock` with a high advisory present is blocked by the pre-push hook.
-- A pull request whose `yarn.lock` has a high advisory fails the new CI job.
+- `package-lock.json` lists `js-yaml` at 4.3.2 or later.
+- `package-lock.json` lists `source-map-js` at 1.2.2 or later.
+- `package-lock.json` lists `brace-expansion` at 5.0.12 or later wherever the 5.x line is used, and no version inside any of its three advisory ranges.
+- `package-lock.json` lists `postcss-selector-parser` at 7.1.6 or later.
+- `package-lock.json` lists `colord` at 2.9.4 or later and `fast-uri` at 3.1.8 or later.
+- `npm audit` on the updated tree reports no advisory except the `braces` one.
+- `npm run stylelint` and `npx eslint .` pass on the updated tree.
+- A push that changes `package-lock.json` while only high advisories exist goes through, and the push output shows the audit report.
+- A push that changes `package-lock.json` while a critical advisory exists is blocked by the pre-push hook.
+- A push that changes neither `package.json` nor `package-lock.json` does not run the audit.
+- The new CI job passes on this branch and prints the audit report.
 
 ---
 Domain skills applied: dependencies.
