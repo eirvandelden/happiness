@@ -33,6 +33,8 @@ production:
   primary:
     <<: *default
     database: storage/production.sqlite3
+    # Solid Queue runs inside Puma: 3 Puma threads + 3 job threads, plus headroom.
+    max_connections: 10
   cache:
     <<: *default
     database: storage/production_cache.sqlite3
@@ -41,6 +43,15 @@ production:
     <<: *default
     database: storage/production_queue.sqlite3
     migrations_paths: db/queue_migrate
+    # Solid Queue runs as threads inside Puma (async mode), so one pool serves all of them.
+    # Worst case is 19 connections, plus 1 spare. Re-count when RAILS_MAX_THREADS, worker
+    # `threads` in config/queue.yml, the recurring tasks or the solid_queue version change.
+    #   Puma request threads that enqueue (RAILS_MAX_THREADS, default 3)  3
+    #   Supervisor: supervise loop, heartbeat timer, maintenance timer     3
+    #   Dispatcher: poll loop, heartbeat timer, maintenance timer          3
+    #   Worker: poll loop, heartbeat timer, 3 job threads                  5
+    #   Scheduler: run loop, heartbeat timer, 3 recurring task timers      5
+    max_connections: 20
   cable:
     <<: *default
     database: storage/production_cable.sqlite3
