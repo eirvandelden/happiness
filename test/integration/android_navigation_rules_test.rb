@@ -26,6 +26,17 @@ class AndroidNavigationRulesTest < ActionDispatch::IntegrationTest
                  every_path["properties"])
   end
 
+  test "the whole response is the contract the Android app parses" do
+    get "/configurations/android_v1.json"
+
+    assert_equal({ "settings" => {},
+                   "rules" => [ { "patterns" => [ ".*" ],
+                                  "properties" => { "context" => "default",
+                                                    "uri" => "hotwire://fragment/web",
+                                                    "pull_to_refresh_enabled" => true } } ] },
+                 navigation_rules)
+  end
+
   private
     def navigation_rules
       JSON.parse(response.body)
