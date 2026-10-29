@@ -28,7 +28,19 @@
           <td role="cell" data-label="<%= t(".actions") %>">
             <%= link_to t(".view"), admin_user_path(user) %>
             <%= link_to t(".edit"), edit_admin_user_path(user) %>
-            <%= button_to t(".delete"), admin_user_path(user), method: :delete, data: { turbo_confirm: t(".confirm_delete") } unless user == Current.user %>
+            <% unless user == Current.user %>
+              <button type="button" class="button-danger" commandfor="delete-user-<%= user.id %>" command="show-modal">
+                <%= t(".delete_trigger") %>
+              </button>
+              <dialog id="delete-user-<%= user.id %>" aria-labelledby="delete-user-<%= user.id %>-title">
+                <h2 id="delete-user-<%= user.id %>-title"><%= t(".confirm_delete") %></h2>
+                <p><%= user.email %></p>
+                <footer>
+                  <form method="dialog"><button><%= t(".cancel") %></button></form>
+                  <%= button_to t(".delete"), admin_user_path(user), method: :delete %>
+                </footer>
+              </dialog>
+            <% end %>
           </td>
         </tr>
       <% end %>

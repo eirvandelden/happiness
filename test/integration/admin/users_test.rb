@@ -37,6 +37,22 @@ class Admin::UsersTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "each deletable user has a delete dialog" do
+    sign_in_as(@admin)
+    get admin_users_path
+
+    deletable = User.where.not(id: @admin.id)
+
+    assert_select "dialog[id^=delete-user-]", count: deletable.count
+    assert_select "dialog#delete-user-#{@admin.id}", count: 0
+    assert_select "button[type=button][commandfor=delete-user-#{@user.id}][command=show-modal]"
+    assert_select "dialog#delete-user-#{@user.id}[aria-labelledby]" do
+      assert_select "footer form[method=dialog] button"
+      assert_select "footer form[action=?] input[name=_method][value=delete]", admin_user_path(@user)
+    end
+    assert_select "[data-turbo-confirm]", count: 0
+  end
+
   test "admin can view a user" do
     sign_in_as(@admin)
     get admin_user_path(@user)

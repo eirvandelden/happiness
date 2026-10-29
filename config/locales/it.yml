@@ -42,9 +42,11 @@ it:
         role: Ruolo
       index:
         actions: Azioni
+        cancel: Annulla
         confirm_delete: "⚠️ Sei sicuro di voler eliminare questo utente?"
         created_at: Creato
         delete: "🗑️ Elimina"
+        delete_trigger: "🗑️ Elimina…"
         edit: "✏️ Modifica"
         email: Email
         last_login_at: Ultimo accesso
