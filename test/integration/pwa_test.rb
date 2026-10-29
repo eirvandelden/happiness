@@ -5,6 +5,7 @@ class PwaTest < ActionDispatch::IntegrationTest
     get "/manifest"
 
     assert_response :success
+    assert_equal "application/json", response.media_type
     assert_includes response.body, "Happiness"
     assert_includes response.body, "#BC4090"
   end
@@ -13,5 +14,6 @@ class PwaTest < ActionDispatch::IntegrationTest
     get "/service-worker"
 
     assert_response :success
+    assert_equal "application/javascript", response.media_type
   end
 end
