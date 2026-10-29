@@ -25,6 +25,18 @@ class Admin::UsersTest < ActionDispatch::IntegrationTest
     assert_select "td[data-label=?] time[datetime]", I18n.t("admin.users.index.created_at")
   end
 
+  test "the user form puts its buttons in an action row" do
+    sign_in_as(@admin)
+
+    [ new_admin_user_path, edit_admin_user_path(@user) ].each do |path|
+      get path
+
+      assert_select "form > footer:last-child input[type=submit]"
+      assert_select "form > footer:last-child a"
+      assert_select "form > nav", count: 0
+    end
+  end
+
   test "admin can view a user" do
     sign_in_as(@admin)
     get admin_user_path(@user)

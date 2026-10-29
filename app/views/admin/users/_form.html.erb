@@ -27,8 +27,8 @@
     <%= form.password_field :password_confirmation, required: user.new_record? %>
   </fieldset>
 
-  <nav>
-    <%= form.submit submit_label %>
+  <footer>
     <%= link_to t(".cancel"), cancel_path %>
-  </nav>
+    <%= form.submit submit_label %>
+  </footer>
 <% end %>

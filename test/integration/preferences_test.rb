@@ -11,6 +11,12 @@ class PreferencesTest < ActionDispatch::IntegrationTest
     follow_redirect!
   end
 
+  test "the preferences form puts its submit in an action row" do
+    get edit_preferences_path
+
+    assert_select "form > footer:last-child input[type=submit]"
+  end
+
   test "user can update locale" do
     patch preferences_path, params: { user: { locale: "en" } }
 

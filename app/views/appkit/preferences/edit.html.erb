@@ -45,7 +45,9 @@
           Appkit.config.user_class.call.dark_themes.keys.map { |k| [t("appkit.themes.#{k}"), k] } %>
     </fieldset>
 
-    <%= form.submit t(".submit") %>
+    <footer>
+      <%= form.submit t(".submit") %>
+    </footer>
   <% end %>
 
   <%# Reminders rely on the browser's own notification permission, which the app's web view does not offer. %>
