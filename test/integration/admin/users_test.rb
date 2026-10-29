@@ -14,6 +14,17 @@ class Admin::UsersTest < ActionDispatch::IntegrationTest
     assert_select "td", text: @user.email
   end
 
+  test "the users table stacks on narrow screens" do
+    sign_in_as(@admin)
+    get admin_users_path
+
+    assert_select "table[data-stack=medium][role=table][aria-labelledby=users-title]"
+    assert_select "#users-title", text: I18n.t("admin.users.index.title")
+    assert_select "thead[role=rowgroup] tr[role=row] th[role=columnheader]", count: 6
+    assert_select "tbody[role=rowgroup] tr[role=row] td[role=cell][data-label]"
+    assert_select "td[data-label=?] time[datetime]", I18n.t("admin.users.index.created_at")
+  end
+
   test "admin can view a user" do
     sign_in_as(@admin)
     get admin_user_path(@user)
