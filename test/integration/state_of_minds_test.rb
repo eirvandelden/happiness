@@ -109,6 +109,7 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_response :success
     # fixture entry_one for this user exists
     assert_match "Good day", response.body
+    assert_select "li time[datetime]"
   end
 
   test "index shows mood trend SVG chart when entries exist" do
