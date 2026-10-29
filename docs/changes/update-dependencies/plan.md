@@ -66,6 +66,7 @@ Not affected: no new query and no new request path. The admin users page renders
 - **Linter and deprecation fixes go in their own commits**, after the bump that caused them, named after the tool and version. No disable comments. No new `.rubocop_todo.yml` entries.
 - **`Gemfile`, `package.json` and `.github/` do not change.** Every target fits the current constraints. `npm update` is used without arguments (never `--save`, never `--latest`).
 - **The full sweep is allowed.** Rule 11 forbids `bundle update` without explicit instruction. The intent gives that instruction ("update all dependencies"). The final `bundle lock --update` runs as a check only; it must change nothing.
+- **`crass` goes first (departure, 2026-10-26).** The step 5 baseline failed `bin/bundler-audit` on `crass` 1.0.7 (GHSA-pq4g-8rxf-4g29, fixed in 1.0.8), an advisory published after the plan. `crass` is a patch bump inside the sweep, so it is the first commit; every later commit then has a green baseline.
 - **Baseline before changing anything.** Test and boot output on today's versions go to `tmp/update-dependencies/baseline-*.log` (`tmp/` is gitignored). The "no new deprecation warnings" check diffs against it.
 - **`npm run stylelint` takes the glob.** Bare `npm run stylelint` lints nothing. Every check runs `npm run stylelint -- "app/assets/stylesheets/**/*.css"`.
 
