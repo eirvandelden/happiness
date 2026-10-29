@@ -1,12 +1,15 @@
 class StateOfMindsController < ApplicationController
+  #: () -> void
   def index
     @entries = Current.user.state_of_minds.order(recorded_at: :desc)
   end
 
+  #: () -> void
   def new
     @state_of_mind = Current.user.state_of_minds.build
   end
 
+  #: () -> void
   def create
     @state_of_mind = Current.user.state_of_minds.build(state_of_mind_params)
     if @state_of_mind.save

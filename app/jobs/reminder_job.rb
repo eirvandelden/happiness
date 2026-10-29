@@ -4,6 +4,7 @@ class ReminderJob < ApplicationJob
   # in each user's own timezone rather than the server's.
   WINDOWS = [ [ 9, 30, 12, 30 ], [ 14, 30, 17, 30 ], [ 19, 30, 22, 30 ] ].freeze
 
+  #: () -> void
   def perform
     User.joins(:push_subscriptions).distinct.find_each { |user| remind_if_due(user) }
   end

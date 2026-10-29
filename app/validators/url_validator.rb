@@ -10,6 +10,7 @@ class UrlValidator < ActiveModel::EachValidator
   # @param attribute [Symbol] the attribute name being validated
   # @param value [String] the value to validate
   # @return [void]
+  #: (ActiveModel::Validations, Symbol, untyped) -> void
   def validate_each(record, attribute, value)
     return if value.blank?
 

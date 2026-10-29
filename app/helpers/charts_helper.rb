@@ -16,6 +16,7 @@ module ChartsHelper
   #
   # @param entries [Array<StateOfMind>] records to plot by recorded_at
   # @return [String] HTML-safe SVG markup, or an empty paragraph when no entries
+  #: (Enumerable[StateOfMind]) -> ActiveSupport::SafeBuffer
   def svg_mood_chart(entries)
     data = Array(entries).sort_by(&:recorded_at).last(30)
     return content_tag(:p, "") if data.empty?
@@ -39,6 +40,7 @@ module ChartsHelper
   #
   # @param entries [Array<StateOfMind>] records
   # @return [String] HTML-safe SVG markup, or an empty paragraph when no emotions
+  #: (Enumerable[StateOfMind]) -> ActiveSupport::SafeBuffer
   def svg_emotion_chart(entries)
     counts = emotion_counts(Array(entries))
     return content_tag(:p, "") if counts.empty?

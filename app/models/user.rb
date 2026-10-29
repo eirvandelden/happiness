@@ -30,12 +30,14 @@ class User < ApplicationRecord
   after_initialize :set_defaults
 
   # Return timezone as ActiveSupport::TimeZone object
+  #: () -> ActiveSupport::TimeZone?
   def time_zone
     ActiveSupport::TimeZone[timezone]
   end
 
   # The reminder window (out of the given windows) that covers this user's current
   # local time, or nil if their local time is outside every window right now.
+  #: (Array[[Integer, Integer, Integer, Integer]]) -> Range[ActiveSupport::TimeWithZone]?
   def current_reminder_window(windows)
     now = time_zone.now
     windows
@@ -44,12 +46,14 @@ class User < ApplicationRecord
   end
 
   # Whether this user already recorded an entry within the given (timezone-aware) window.
+  #: (Range[ActiveSupport::TimeWithZone]) -> bool
   def recorded_within?(window)
     state_of_minds.where(recorded_at: window).exists?
   end
 
   # Whether a reminder was already sent within the given (timezone-aware) window —
   # needed because the recurring job runs frequently, not once per window.
+  #: (Range[ActiveSupport::TimeWithZone]) -> bool
   def reminded_within?(window)
     last_reminded_at.present? && window.cover?(last_reminded_at)
   end
