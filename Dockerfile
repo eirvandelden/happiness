@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1
 
-ARG RUBY_VERSION=4.0.7
+ARG RUBY_VERSION=4.0.9
 ARG TARGETPLATFORM
 
 FROM --platform=$TARGETPLATFORM registry.docker.com/library/ruby:$RUBY_VERSION-slim AS base
