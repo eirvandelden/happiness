@@ -29,8 +29,9 @@ class User < ApplicationRecord
 
   after_initialize :set_defaults
 
-  # Return timezone as ActiveSupport::TimeZone object
-  #: () -> ActiveSupport::TimeZone?
+  # Return timezone as ActiveSupport::TimeZone object. Never nil: timezone is required
+  # and validated against ActiveSupport::TimeZone.all.
+  #: () -> ActiveSupport::TimeZone
   def time_zone
     ActiveSupport::TimeZone[timezone]
   end
