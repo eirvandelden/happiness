@@ -19,7 +19,7 @@ On 2026-10-20, the state is:
 ## Proposed outcome
 
 - Every gem, npm package, Ruby and Bundler is at the newest version that resolves.
-- `npm audit` reports only `braces`, which has no fixed release.
+- `npm audit` reports only advisories that no release inside the current ranges fixes (`minimatch`, under `eslint`).
 - The app behaves as before for users and for the Android app.
 - After the merge, Dependabot sees that the versions are current and closes its open PRs and alerts itself.
 
@@ -65,9 +65,9 @@ On 2026-10-20, the state is:
 
 ## Acceptance criteria
 
-- `bundle outdated` lists no gem, except `marcel`.
+- `bundle outdated` lists no gem, except `marcel`, `net-ssh` 8.x and `prism` 2.x, which upstream constraints hold back.
 - `npm outdated` lists no package.
-- `npm audit` lists only `braces`.
+- `npm audit` lists only `minimatch`, which `eslint` holds on 10.x.
 - Each open Dependabot PR proposes a version that this branch already has, or an older one.
 - `.ruby-version` and the Dockerfile name Ruby 4.0.9, and `Gemfile.lock` says it was bundled with the newest Bundler release.
 - The personal gems resolve to the newest commit on their `main` branch.
