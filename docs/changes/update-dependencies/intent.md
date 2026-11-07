@@ -14,7 +14,7 @@ On 2026-10-20, the state is:
 - The personal gems from GitHub are behind their `main` branch: `appkit`, `mvpa-css`, `rubocop-eirvandelden` and `exception_notification-campfire-once`.
 - `eslint` (10.8.1 → 10.13.0) and `stylelint` (17.14.1 → 17.16.0) are behind.
 - `npm audit` reports 11 advisories in dev packages: 8 high and 3 moderate. Four of them are open Dependabot alerts: `js-yaml` (#24), `brace-expansion` (#27), `postcss-selector-parser` (#30) and `source-map-js` (#31).
-- Ruby is 4.0.2; 4.0.7 is the newest. Bundler is 4.0.9; 4.0.23 is the newest.
+- Ruby is 4.0.2 and Bundler is 4.0.9. Both have newer releases.
 
 ## Proposed outcome
 
@@ -35,8 +35,8 @@ On 2026-10-20, the state is:
 
 - Never skip a major version. `marcel` stays on 1.x, because Rails 8.1 Active Storage requires `marcel ~> 1.0`.
 - Etienne explicitly asked to update all dependencies (rule 11). Do not add or remove a dependency without asking first.
-- Etienne approved one Dockerfile edit: `ARG RUBY_VERSION` 4.0.2 → 4.0.7 (rule 13). No other deployment config or workflow file changes.
-- Ruby 4.0.7 is already installed through rv. Install no system tooling.
+- Etienne approved one Dockerfile edit: `ARG RUBY_VERSION` 4.0.2 → 4.0.9 (rule 13). No other deployment config or workflow file changes.
+- Ruby 4.0.9 is already installed through rv. Install no system tooling.
 - Personal gems stay unpinned and come from their GitHub `main` branch.
 - `package.json` keeps its current ranges. No npm `overrides`.
 - No deploy.
@@ -47,8 +47,8 @@ On 2026-10-20, the state is:
 - The personal git gems: `appkit`, `mvpa-css`, `rubocop-eirvandelden` and `exception_notification-campfire-once`.
 - All npm packages, direct and transitive, in `package-lock.json`.
 - Every `npm audit` advisory that a version inside the current `package.json` ranges fixes.
-- Ruby 4.0.2 → 4.0.7 in `.ruby-version` and the Dockerfile.
-- Bundler 4.0.9 → 4.0.23 in `Gemfile.lock`.
+- Ruby 4.0.2 → 4.0.9 in `.ruby-version` and the Dockerfile.
+- Bundler 4.0.9 → the newest release in `Gemfile.lock`.
 - Fixes for code that the new linter versions flag.
 - Fixes for warnings from the new Brakeman and bundler-audit versions.
 - Fixes for deprecation warnings that the new versions introduce.
@@ -69,7 +69,7 @@ On 2026-10-20, the state is:
 - `npm outdated` lists no package.
 - `npm audit` lists only `braces`.
 - Each open Dependabot PR proposes a version that this branch already has, or an older one.
-- `.ruby-version` and the Dockerfile name Ruby 4.0.7, and `Gemfile.lock` says it was bundled with Bundler 4.0.23.
+- `.ruby-version` and the Dockerfile name Ruby 4.0.9, and `Gemfile.lock` says it was bundled with the newest Bundler release.
 - The personal gems resolve to the newest commit on their `main` branch.
 - The full test suite passes, system tests included, and `npm test` passes.
 - `bin/rubocop`, `npx eslint .`, `npm run stylelint` and `bundle exec herb lint` pass, with no linter disable comments added.
