@@ -14,8 +14,8 @@ module ChartsHelper
 
   # Renders an inline SVG line chart of mood scores over time.
   #
-  # @param entries [Array<StateOfMind>] records to plot by recorded_at
-  # @return [String] HTML-safe SVG markup, or an empty paragraph when no entries
+  # @param entries [Enumerable<StateOfMind>] records to plot by recorded_at
+  # @return [ActiveSupport::SafeBuffer] SVG markup, or an empty paragraph when no entries
   #: (Enumerable[StateOfMind]) -> ActiveSupport::SafeBuffer
   def svg_mood_chart(entries)
     data = Array(entries).sort_by(&:recorded_at).last(30)
@@ -38,8 +38,8 @@ module ChartsHelper
 
   # Renders an inline SVG horizontal bar chart of emotion frequencies.
   #
-  # @param entries [Array<StateOfMind>] records
-  # @return [String] HTML-safe SVG markup, or an empty paragraph when no emotions
+  # @param entries [Enumerable<StateOfMind>] records
+  # @return [ActiveSupport::SafeBuffer] SVG markup, or an empty paragraph when no emotions
   #: (Enumerable[StateOfMind]) -> ActiveSupport::SafeBuffer
   def svg_emotion_chart(entries)
     counts = emotion_counts(Array(entries))
