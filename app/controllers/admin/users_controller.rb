@@ -1,17 +1,21 @@
 class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: [ :show, :edit, :update, :destroy ]
 
+  #: () -> void
   def index
     @users = User.all.order(created_at: :desc)
   end
 
+  #: () -> void
   def show
   end
 
+  #: () -> void
   def new
     @user = User.new
   end
 
+  #: () -> void
   def create
     @user = User.new(user_params)
     assign_role(@user)
@@ -23,9 +27,11 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  #: () -> void
   def edit
   end
 
+  #: () -> void
   def update
     @user.assign_attributes(user_params)
     assign_role(@user)
@@ -37,6 +43,7 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  #: () -> void
   def destroy
     if @user == Current.user
       redirect_to admin_users_path, alert: t(".cannot_delete_self")

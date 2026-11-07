@@ -17,6 +17,12 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_select "input[type=checkbox]" # emotion/context checkboxes
   end
 
+  test "the mood form puts its submit in an action row" do
+    get new_state_of_mind_path
+
+    assert_select "form > footer:last-child input[type=submit]"
+  end
+
   test "user can submit a valid state of mind entry" do
     assert_difference "StateOfMind.count" do
       post state_of_minds_path, params: {
@@ -103,6 +109,7 @@ class StateOfMindsTest < ActionDispatch::IntegrationTest
     assert_response :success
     # fixture entry_one for this user exists
     assert_match "Good day", response.body
+    assert_select "li time[datetime]"
   end
 
   test "index shows mood trend SVG chart when entries exist" do

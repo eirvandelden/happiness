@@ -1,30 +1,46 @@
 <article>
-  <h1><%= t(".title") %></h1>
+  <h1 id="users-title"><%= t(".title") %></h1>
   <%= link_to t(".new_user"), new_admin_user_path %>
 
-  <table>
-    <thead>
-      <tr>
-        <th><%= t(".name") %></th>
-        <th><%= t(".email") %></th>
-        <th><%= t(".role") %></th>
-        <th><%= t(".last_login_at") %></th>
-        <th><%= t(".created_at") %></th>
-        <th><%= t(".actions") %></th>
+  <table data-stack="medium" role="table" aria-labelledby="users-title">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th role="columnheader"><%= t(".name") %></th>
+        <th role="columnheader"><%= t(".email") %></th>
+        <th role="columnheader"><%= t(".role") %></th>
+        <th role="columnheader"><%= t(".last_login_at") %></th>
+        <th role="columnheader"><%= t(".created_at") %></th>
+        <th role="columnheader"><%= t(".actions") %></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody role="rowgroup">
       <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name.presence || t(".no_name") %></td>
-          <td><%= user.email %></td>
-          <td><%= user.role %></td>
-          <td><%= user.last_login_at ? l(user.last_login_at, format: :long) : t(".never") %></td>
-          <td><%= l(user.created_at, format: :long) %></td>
-          <td>
+        <tr role="row">
+          <td role="cell" data-label="<%= t(".name") %>"><%= user.name.presence || t(".no_name") %></td>
+          <td role="cell" data-label="<%= t(".email") %>"><%= user.email %></td>
+          <td role="cell" data-label="<%= t(".role") %>"><%= user.role %></td>
+          <td role="cell" data-label="<%= t(".last_login_at") %>">
+            <%= user.last_login_at ? time_tag(user.last_login_at, l(user.last_login_at, format: :long)) : t(".never") %>
+          </td>
+          <td role="cell" data-label="<%= t(".created_at") %>">
+            <%= time_tag(user.created_at, l(user.created_at, format: :long)) %>
+          </td>
+          <td role="cell" data-label="<%= t(".actions") %>">
             <%= link_to t(".view"), admin_user_path(user) %>
             <%= link_to t(".edit"), edit_admin_user_path(user) %>
-            <%= button_to t(".delete"), admin_user_path(user), method: :delete, data: { turbo_confirm: t(".confirm_delete") } unless user == Current.user %>
+            <% unless user == Current.user %>
+              <button type="button" class="button-danger" commandfor="delete-user-<%= user.id %>" command="show-modal">
+                <%= t(".delete_trigger") %>
+              </button>
+              <dialog id="delete-user-<%= user.id %>" aria-labelledby="delete-user-<%= user.id %>-title">
+                <h2 id="delete-user-<%= user.id %>-title"><%= t(".confirm_delete") %></h2>
+                <p><%= user.email %></p>
+                <footer>
+                  <form method="dialog"><button><%= t(".cancel") %></button></form>
+                  <%= button_to t(".delete"), admin_user_path(user), method: :delete %>
+                </footer>
+              </dialog>
+            <% end %>
           </td>
         </tr>
       <% end %>

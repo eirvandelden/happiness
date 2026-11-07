@@ -9,7 +9,7 @@
     <ul>
       <% @entries.each do |entry| %>
         <li>
-          <%= l(entry.recorded_at, format: :short) %> —
+          <%= time_tag(entry.recorded_at, l(entry.recorded_at, format: :short)) %> —
           <%= t("state_of_minds.moods.#{entry.mood_score}") %>
           <% if entry.note.present? %>
             — <%= entry.note %>
