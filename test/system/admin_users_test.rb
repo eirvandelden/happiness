@@ -25,8 +25,7 @@ class AdminUsersTest < ApplicationSystemTestCase
   end
 
   private
-
-  def user_row
-    find("td", exact_text: @user.email).ancestor("tr")
-  end
+    def user_row
+      find("td", exact_text: @user.email).ancestor("tr")
+    end
 end
